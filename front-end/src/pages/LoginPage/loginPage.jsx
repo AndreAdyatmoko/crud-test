@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import RegisterModal from "../../components/modals/registerModal";
+import Footer from "../footer/footer";
 
 const LoginPage = () => {
 
@@ -79,6 +80,7 @@ const LoginPage = () => {
         </div>
       </div>
       {isModalOpen && <RegisterModal closeModal={closeModal} />}
+      <Footer />
     </div>
   );
 };

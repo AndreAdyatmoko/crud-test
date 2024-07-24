@@ -1,58 +1,46 @@
-import React, { useState } from "react";
+import React from "react";
+import { CgProfile } from "react-icons/cg";
+
 import Footer from "../footer/footer";
-import Modal from "../../components/modals/homeOneModal";
 
 const Home = () => {
-  const textSize = "text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl";
-  const menuItems = ["m-abc", "KlikABC", "Info ABC"];
-
-  const additionalItems = ["Buka Rekening Baru", "Ganti Kode Akses", "Flazz"];
-
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const openModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
+  // Ambil nama pengguna dan waktu login terakhir dari localStorage
+  const username = localStorage.getItem("username") || "User";
+  const lastLogin = localStorage.getItem("loginTime") || "Never";
 
   return (
-    <div className="bg-primery p-4 flex-col sm:flex-row h-screen">
-      <div className={`flex-1 text-white ${textSize}`}>
-        <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl ">
-          <span className="font-jaro">ABC</span>mobile
-        </h1>
-      </div>
-      <div className="bg-secondary border rounded text-white  sm:text-lg md:text-xl lg:text-2xl xl:text-3xl">
-        {menuItems.map((item, index) => (
-          <div
-            key={index}
-            className="border-b-2 p-2 hover:bg-white hover:text-primery cursor-pointer font-freeman"
-            onClick={() => {
-                if (item === "m-abc") {
-                  openModal();
-                }
-            }}
-          >
-            {item}
+    <div className="bg-fourth text-white flex flex-col h-screen">
+      <header className="bg-secondary p-4 shadow-lg">
+        <div className="container mx-auto flex justify-between items-center">
+          <h1 className="text-3xl font-bold">Welcome, {username}!</h1>
+          <CgProfile className="text-3xl" />
+          
+        </div>
+      </header>
+
+      <main className="flex-1 flex flex-col justify-center items-center p-4">
+        <div className="bg-secondary p-6 rounded-lg shadow-xl max-w-2xl w-full">
+          <h2 className="text-2xl mb-4 font-semibold">Dashboard</h2>
+          <p className="text-lg mb-4">Hello, {username}!</p>
+          <p className="text-lg mb-6">Last login: {lastLogin}</p>
+          <div className="flex flex-col items-center">
+            <button
+              onClick={() => window.location.href = "/change-password"}
+              className="bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600 transition-colors duration-300 mb-4"
+            >
+              Change Password
+            </button>
+            <button
+              onClick={() => window.location.href = "/logout"}
+              className="bg-red-500 text-white px-6 py-3 rounded-lg hover:bg-red-600 transition-colors duration-300"
+            >
+              Log Out
+            </button>
           </div>
-        ))}
-      </div>
-      <div className="bg-primery  text-white  sm:text-lg md:text-xl lg:text-2xl xl:text-3xl mt-4">
-        {additionalItems.map((item, index) => (
-          <div
-            key={index}
-            className="rounded-md p-2 hover:bg-white hover:text-primery cursor-pointer font-freeman bg-secondary"
-            style={{ marginBottom: "8px" }}
-          >
-            {item}
-          </div>
-        ))}
-      </div>
+        </div>
+      </main>
+
       <Footer />
-      {isModalOpen && <Modal closeModal={closeModal} />}
     </div>
   );
 };

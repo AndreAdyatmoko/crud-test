@@ -12,9 +12,11 @@ module.exports = {
       colors: {
         primery: "#003399",
         secondary: "#1e40af",
+        third: "#111827",
+        fourth: "#F0F2F5",
+        fifth: "#42B72A",
         hover: "#1d4ed8",
         "modal-hover": "#172554",
-        third: "#111827",
       },
     },
   },

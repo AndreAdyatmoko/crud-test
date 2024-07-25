@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import RegisterModal from "../../components/modals/registerModal";
 import Footer from "../footer/footer";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const LoginPage = () => {
-
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const openModal = () => {
@@ -13,6 +14,15 @@ const LoginPage = () => {
   const closeModal = () => {
     setIsModalOpen(false);
   };
+
+  const handleLogin = (event) => {
+    event.preventDefault();
+    // Simulasi login sukses
+    toast.success("Login berhasil!");
+    // Setelah login sukses, bisa ditambahkan redirect ke halaman utama
+    // contohnya: window.location.href = "/home";
+  };
+
   return (
     <div className="min-h-screen flex">
       <div className="hidden md:flex flex-1">
@@ -29,9 +39,9 @@ const LoginPage = () => {
         <div className="bg-fourth h-screen flex-1 min-h-screen flex justify-center items-center">
           <div className="bg-secondary p-8 rounded-lg shadow-lg">
             <h2 className="text-2xl sm:text-3xl md:text-4xl text-white font-freeman justify-center items-center flex p-2">
-              Bookface
+              User UI
             </h2>
-            <form className="space-y-4">
+            <form className="space-y-4" onSubmit={handleLogin}>
               <div className="flex flex-col">
                 <label
                   className="block mb-2 text-white font-freeman text-sm"
@@ -67,13 +77,12 @@ const LoginPage = () => {
                 >
                   Login
                 </button>
-                  <button
-                    className="bg-fifth text-white px-4 py-2 rounded-lg hover:bg-hover focus:outline-none font-freeman "
-                    onClick={openModal}
-                    
-                  >
-                    Register
-                  </button>
+                <button
+                  className="bg-fifth text-white px-4 py-2 rounded-lg hover:bg-hover focus:outline-none font-freeman"
+                  onClick={openModal}
+                >
+                  Register
+                </button>
               </div>
             </form>
           </div>
@@ -81,6 +90,7 @@ const LoginPage = () => {
       </div>
       {isModalOpen && <RegisterModal closeModal={closeModal} />}
       <Footer />
+      <ToastContainer />
     </div>
   );
 };

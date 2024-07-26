@@ -15,5 +15,8 @@ router.get("/", UserController.getAllUsers);
 // Update
 router.patch("/:id", UserController.updateUsers);
 
+// Delete
+router.delete("/:id", UserController.deleteUsers);
+
 
 module.exports = router;

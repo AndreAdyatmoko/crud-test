@@ -1,18 +1,14 @@
-const getAllUsers = (req, res) => {
-  const data = {
-    id: 1,
-    name: "Viktor",
-    email: "lq8h7@example.com",
-    birthDate: "1990-01-01",
-    gender: "Male",
-    registrationDate: "2022-01-01",
-    status: "Active",
+const UsersModel = require("../models/users");
+
+const getAllUsers = async (req, res) => {
+    const [data] = await UsersModel.getAllUsers();
+    res.status(200).json({
+        message: "Get all users",
+        data: data
+    });
+  
+
   };
-  res.json({
-    message: "Get all users",
-    data: data,
-  });
-};
 
 const createNewUsers = (req, res) => {
   console.log(req.body);

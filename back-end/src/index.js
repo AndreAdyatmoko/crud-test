@@ -1,13 +1,30 @@
 const express = require("express");
-const usersRoutes = require("./routes/users");
-const middlewareLogRequest = require("./middleware/log");
-
 const app = express();
+const path = require("path");
+const cors = require("cors");
+require("dotenv").config({ path: path.resolve(__dirname, "../.env") });
 
-app.use(middlewareLogRequest);
+// Set Middleware
+app.use(cors());
 app.use(express.json());
 
-app.use("/users", usersRoutes);
+// Logging Middleware
+
+const middlewareLogRequest = require("./middleware/log");
+
+// Database connection
+
+
+// Import Routes
+const usersRoutes = require("./routes/users");
+app.use(middlewareLogRequest);
+
+
+
+// User Routes
+
+app.use("/api/users", usersRoutes);
+
 
 app.listen(4000, () => {
   console.log("Server running on port 4000");

@@ -1,23 +1,14 @@
 const express = require("express");
+const usersRoutes = require("./routes/users");
+const middlewareLogRequest = require("./middleware/log");
+
 const app = express();
-const db = require("./config/database");
 
-// Configure express
-require("dotenv").config();
-
-
-// Connect to database
-// db.sequelize.sync({alter: true});
-
-// Body parser
+app.use(middlewareLogRequest);
 app.use(express.json());
 
+app.use("/users", usersRoutes);
 
-// Import routes
-
-
-
-// endpoints
-app.listen(process.env.PORT, () => {
-  console.log("Listening on port " + process.env.PORT);
+app.listen(4000, () => {
+  console.log("Server running on port 4000");
 });

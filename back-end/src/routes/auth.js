@@ -1,9 +1,10 @@
 const express = require("express");
 const router = express.Router();
+const Auth = require("../controller/auth");
 
-// Contoh route POST untuk login
-router.post("/login", (req, res) => {
-  res.send("User login");
-});
+// Jalannya route nanti
+
+router.post("/login", Auth.Login);
+
 
 module.exports = router;

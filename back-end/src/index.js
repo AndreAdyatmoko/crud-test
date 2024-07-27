@@ -10,11 +10,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 
-// Database connection
-
-
 // Import Routes
 const usersRoutes = require("./routes/users");
+const authRoutes = require("./routes/auth");
 
 
 
@@ -22,6 +20,10 @@ const usersRoutes = require("./routes/users");
 // User Routes
 
 app.use("/api/users", usersRoutes);
+
+// Auth Routes
+
+app.use("/api/auth", authRoutes);
 
 
 app.listen(4000, () => {

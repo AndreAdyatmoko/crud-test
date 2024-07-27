@@ -7,17 +7,15 @@ require("dotenv").config({ path: path.resolve(__dirname, "../.env") });
 // Set Middleware
 app.use(cors());
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-// Logging Middleware
-
-const middlewareLogRequest = require("./middleware/log");
 
 // Database connection
 
 
 // Import Routes
 const usersRoutes = require("./routes/users");
-app.use(middlewareLogRequest);
+
 
 
 

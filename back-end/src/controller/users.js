@@ -1,48 +1,51 @@
-const UsersModel = require("../models/users");
+const UsersModel = require('../models/users');
 
 const getAllUsers = async (req, res) => {
-    const [data] = await UsersModel.getAllUsers();
+  try {
+    const data = await UsersModel.getAllUsers();
     res.status(200).json({
-        message: "Get all users",
-        data: data
+      message: "Fetched all users",
+      data: data
     });
-  
-
-  };
-
-const createNewUsers = (req, res) => {
-  console.log(req.body);
-  res.json({
-    message: "Create new users",
-    data: req.body,
-  });
+  } catch (error) {
+    res.status(500).json({
+      message: "An error occurred while fetching users",
+      error: error.message
+    });
+  }
 };
 
-const updateUsers = (req, res) => {
-  const{id} = req.params
-    console.log("Id:", id);
-  res.json({
-    message: "Update users",
-    data: req.body,
-  });
+const createNewUsers = async (req, res) => {
+  try {
+    await UsersModel.createNewUsers(req, res);
+  } catch (error) {
+    res.status(500).json({
+      message: "An error occurred while creating a new user",
+      error: error.message
+    });
+  }
 };
 
-const deleteUsers = (req, res) => {
-    const{id} = req.params
-    console.log("Id:", id);
-  res.json({
-    message: "Delete users",
-    data: {
-        id: id,
-        name: "Viktor",
-        email: "lq8h7@example.com",
-        birthDate: "1990-01-01",
-        gender: "Male",
-        registrationDate: "2022-01-01",
-        status: "Active",
-        
-    }
-  });
+const updateUsers = async (req, res) => {
+  try {
+    await UsersModel.updateUsers(req, res);
+  } catch (error) {
+    res.status(500).json({
+      message: "An error occurred while updating the user",
+      error: error.message
+    });
+  }
+};
+
+const deleteUsers = async (req, res) => {
+  try {
+    await UsersModel.deleteUsers(req, res);
+  } catch (error) {
+    res.status(500).json({
+      message: "An error occurred while deleting the user",
+      error: error.message
+    });
+  }
 };
 
 module.exports = {

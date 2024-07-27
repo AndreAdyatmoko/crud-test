@@ -1,62 +1,84 @@
 import React, { useState } from "react";
-import { ToastContainer, toast } from "react-toastify";
+import axios from "axios";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Footer from "../footer/footer";
 
 const LoginPage = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleLogin = (event) => {
+  const handleLogin = async (event) => {
     event.preventDefault();
-    // Simulasi login sukses
-    toast.success("Login berhasil!");
-    // Setelah login sukses, bisa ditambahkan redirect ke halaman utama
-    // contohnya: window.location.href = "/home/";
+
+    try {
+      const response = await axios.post(
+        "http://localhost:4000/api/auth/login-admin",
+        {
+          username,
+          password,
+        }
+      );
+
+      if (response.status === 200) {
+        const { token, username } = response.data; // Pastikan server mengembalikan username
+        // Simpan token dan username di local storage
+        localStorage.setItem("token", token);
+        localStorage.setItem("username", username);
+        // Tampilkan toast notifikasi
+        toast.success("Login berhasil!");
+        // Redirect ke halaman /home setelah delay untuk menampilkan toast
+        setTimeout(() => {
+          window.location.href = "/home";
+        }, 2000);
+      } else {
+        // Tampilkan toast notifikasi error
+        toast.error(response.data.message || "Login gagal!");
+      }
+    } catch (error) {
+      console.error("Error during login:", error);
+      toast.error("Terjadi kesalahan saat login.");
+    }
   };
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-black">
-      <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-lg">
-        <h1 className="text-2xl font-bold mb-4 text-center text-black">
-          Admin Login
-        </h1>
-        <form onSubmit={handleLogin} className="space-y-4">
-          <div className="flex flex-col">
-            <label htmlFor="username" className="text-black mb-1">
+    <div className="min-h-screen bg-gradient-to-r from-gray-100 to-gray-200 flex flex-col items-center justify-center">
+      <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
+        <h1 className="text-3xl font-bold text-gray-800 mb-6">Login Admin</h1>
+        <form onSubmit={handleLogin}>
+          <div className="mb-4">
+            <label className="block text-gray-700 mb-2" htmlFor="username">
               Username
             </label>
             <input
               type="text"
               id="username"
               value={username}
-              className="p-2 border rounded focus:outline-none focus:ring focus:ring-gray-300"
               onChange={(e) => setUsername(e.target.value)}
+              className="w-full p-2 border rounded"
               required
             />
           </div>
-          <div className="flex flex-col">
-            <label htmlFor="password" className="text-black mb-1">
+          <div className="mb-4">
+            <label className="block text-gray-700 mb-2" htmlFor="password">
               Password
             </label>
             <input
               type="password"
               id="password"
               value={password}
-              className="p-2 border rounded focus:outline-none focus:ring focus:ring-gray-300"
               onChange={(e) => setPassword(e.target.value)}
+              className="w-full p-2 border rounded"
               required
             />
           </div>
           <button
             type="submit"
-            className="w-full bg-black text-white py-2 rounded hover:bg-gray-800"
+            className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
           >
             Login
           </button>
-          <ToastContainer />
         </form>
       </div>
-      <Footer />
     </div>
   );
 };

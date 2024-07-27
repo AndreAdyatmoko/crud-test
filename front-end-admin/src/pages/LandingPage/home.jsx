@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ButtonPrimary from "../../component/button/button";
 import ConfirmationModal from "../../component/modals/confirmationModal";
 
@@ -33,6 +33,13 @@ const Home = () => {
   });
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [userToDelete, setUserToDelete] = useState(null);
+  const [adminName, setAdminName] = useState("");
+
+  useEffect(() => {
+    // Ambil nama admin dari local storage
+    const storedAdminName = localStorage.getItem("username");
+    setAdminName(storedAdminName || "Admin");
+  }, []);
 
   const handleEdit = (user) => {
     setEditUser(user);
@@ -69,8 +76,11 @@ const Home = () => {
   };
 
   const handleLogout = () => {
-    // Perform logout logic here (e.g., clear auth tokens, redirect to login page)
-    console.log("Logging out...");
+    // Hapus token dan username dari local storage
+    localStorage.removeItem("token");
+    localStorage.removeItem("username");
+    // Lakukan logika logout lainnya (misal, redirect ke halaman login)
+    window.location.href = "/login";
   };
 
   const filteredUsers = users.filter((user) => {
@@ -92,10 +102,10 @@ const Home = () => {
     <div className="min-h-screen bg-gradient-to-r from-gray-100 to-gray-200 flex flex-col items-center justify-center">
       <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-6xl">
         <div className="flex justify-between items-center mb-6">
-          <h1 className="text-3xl font-bold text-gray-800">Admin Dashboard</h1>
+          <h1 className="text-3xl font-bold text-gray-800">Selamat datang {adminName}</h1>
           <ButtonPrimary
             text="Logout"
-            className="bg-red-500 hover:bg-red-700 w-24 p-2 font-bold"
+            className="bg-red-500 hover:bg-red-700 w-16 p-2 font-bold"
             onClick={handleLogout}
           />
         </div>
@@ -164,40 +174,34 @@ const Home = () => {
             </thead>
             <tbody>
               {filteredUsers.map((user, index) => (
-                <tr key={index} className="hover:bg-gray-100">
-                  <td className="p-2 border-b">{user.no}</td>
+                <tr key={user.email}>
+                  <td className="p-2 border-b">{index + 1}</td>
                   <td className="py-2 px-4 border-b">{user.name}</td>
                   <td className="py-2 px-4 border-b">{user.email}</td>
                   <td className="py-2 px-4 border-b">{user.birthDate}</td>
                   <td className="py-2 px-4 border-b">{user.gender}</td>
-                  <td className="py-2 px-4 border-b">
-                    {user.registrationDate}
-                  </td>
+                  <td className="py-2 px-4 border-b">{user.registrationDate}</td>
                   <td className="py-2 px-4 border-b">
                     <span
-                      className={`px-2 py-1 rounded-full text-white ${
+                      className={`px-2 py-1 rounded ${
                         user.status === "Active"
-                          ? "bg-green-500"
-                          : "bg-gray-500"
+                          ? "bg-green-500 text-white"
+                          : "bg-red-500 text-white"
                       }`}
                     >
                       {user.status}
                     </span>
                   </td>
                   <td className="py-2 px-4 border-b">
-                    <div className="flex items-center gap-2">
+                    <div className="flex space-x-2">
                       <ButtonPrimary
                         text="Edit"
-                        className={
-                          "mr-2 bg-blue-500 font-bold hover:bg-blue-700 p-2"
-                        }
+                        className={"bg-blue-500 font-bold hover:bg-blue-700 w-20"}
                         onClick={() => handleEdit(user)}
                       />
                       <ButtonPrimary
                         text="Delete"
-                        className={
-                          "mr-2 bg-red-500 font-bold hover:bg-red-700 p-2"
-                        }
+                        className={"bg-red-500 font-bold hover:bg-red-700 w-20"}
                         onClick={() => handleDelete(user.email)}
                       />
                     </div>

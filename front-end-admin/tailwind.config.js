@@ -7,7 +7,6 @@ module.exports = {
       jaro: ["Jaro", "sans-serif"],
       freeman: ["Freeman", "sans-serif"],
     },
-
     extend: {
       colors: {
         primery: "#003399",
@@ -16,6 +15,7 @@ module.exports = {
         fourth: "#F0F2F5",
         fifth: "#42B72A",
         hover: "#1d4ed8",
+        "off-button": "#6B7280",
         "modal-hover": "#172554",
       },
     },

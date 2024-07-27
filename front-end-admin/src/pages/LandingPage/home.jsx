@@ -80,7 +80,7 @@ const Home = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("username");
     // Lakukan logika logout lainnya (misal, redirect ke halaman login)
-    window.location.href = "/login";
+    window.location.href = "/";
   };
 
   const filteredUsers = users.filter((user) => {
@@ -102,7 +102,9 @@ const Home = () => {
     <div className="min-h-screen bg-gradient-to-r from-gray-100 to-gray-200 flex flex-col items-center justify-center">
       <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-6xl">
         <div className="flex justify-between items-center mb-6">
-          <h1 className="text-3xl font-bold text-gray-800">Selamat datang {adminName}</h1>
+          <h1 className="text-3xl font-bold text-gray-800">
+            Selamat datang {adminName}
+          </h1>
           <ButtonPrimary
             text="Logout"
             className="bg-red-500 hover:bg-red-700 w-16 p-2 font-bold"
@@ -162,8 +164,8 @@ const Home = () => {
           <table className="min-w-full bg-white shadow-md">
             <thead>
               <tr>
-                <th className="p-2 border-b ">No</th>
-                <th className="py-2 px-4 border-b ">Nama</th>
+                <th className="p-2 border-b">No</th>
+                <th className="py-2 px-4 border-b">Nama</th>
                 <th className="py-2 px-4 border-b">Email</th>
                 <th className="py-2 px-4 border-b">Tanggal Lahir</th>
                 <th className="py-2 px-4 border-b">Gender</th>
@@ -180,7 +182,9 @@ const Home = () => {
                   <td className="py-2 px-4 border-b">{user.email}</td>
                   <td className="py-2 px-4 border-b">{user.birthDate}</td>
                   <td className="py-2 px-4 border-b">{user.gender}</td>
-                  <td className="py-2 px-4 border-b">{user.registrationDate}</td>
+                  <td className="py-2 px-4 border-b">
+                    {user.registrationDate}
+                  </td>
                   <td className="py-2 px-4 border-b">
                     <span
                       className={`px-2 py-1 rounded ${
@@ -196,13 +200,20 @@ const Home = () => {
                     <div className="flex space-x-2">
                       <ButtonPrimary
                         text="Edit"
-                        className={"bg-blue-500 font-bold hover:bg-blue-700 w-20"}
+                        className="bg-blue-500 font-bold hover:bg-blue-700 w-20"
                         onClick={() => handleEdit(user)}
                       />
                       <ButtonPrimary
                         text="Delete"
-                        className={"bg-red-500 font-bold hover:bg-red-700 w-20"}
-                        onClick={() => handleDelete(user.email)}
+                        className={`font-bold w-20 ${
+                          user.status === "Inactive"
+                            ? "bg-off-button hover:bg-off-button cursor-not-allowed"
+                            : "bg-red-500 hover:bg-red-700"
+                        }`}
+                        onClick={() =>
+                          user.status !== "Inactive" && handleDelete(user.email)
+                        }
+                        disabled={user.status === "Inactive"}
                       />
                     </div>
                   </td>
@@ -245,12 +256,12 @@ const Home = () => {
               />
               <ButtonPrimary
                 text="Save"
-                className={"bg-green-500 font-bold hover:bg-green-700"}
+                className="bg-green-500 font-bold hover:bg-green-700"
                 onClick={handleSave}
               />
               <ButtonPrimary
                 text="Cancel"
-                className={"bg-gray-500 font-bold hover:bg-gray-700"}
+                className="bg-gray-500 font-bold hover:bg-gray-700"
                 onClick={() => setEditUser(null)}
               />
             </div>

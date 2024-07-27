@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const RegisterModal = ({ closeModal }) => {
   const [formData, setFormData] = useState({
@@ -19,8 +21,16 @@ const RegisterModal = ({ closeModal }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission here
-    console.log(formData);
+    
+    // Simulasi pendaftaran sukses atau gagal
+    const isSuccess = Math.random() > 0.5; // Ubah sesuai dengan logika pendaftaran Anda
+
+    if (isSuccess) {
+      toast.success("Pendaftaran berhasil!");
+      closeModal(); // Tutup modal jika pendaftaran berhasil
+    } else {
+      toast.error("Pendaftaran gagal! Silakan coba lagi.");
+    }
   };
 
   return (

@@ -1,13 +1,16 @@
 import React, { useState } from "react";
+import axios from "axios";
 import RegisterModal from "../../components/modals/registerModal";
-import Footer from "../footer/footer";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const LoginPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-  const openModal = () => {
+  const openModal = (event) => {
+    event.stopPropagation();
     setIsModalOpen(true);
   };
 
@@ -15,12 +18,40 @@ const LoginPage = () => {
     setIsModalOpen(false);
   };
 
-  const handleLogin = (event) => {
+  const handleLogin = async (event) => {
     event.preventDefault();
-    // Simulasi login sukses
-    toast.success("Login berhasil!");
-    // Setelah login sukses, bisa ditambahkan redirect ke halaman utama
-    // contohnya: window.location.href = "/home";
+    try {
+      const response = await axios.post(
+        "http://localhost:4000/api/auth/login",
+        {
+          email,
+          password,
+        }
+      );
+
+      if (response.status === 200) {
+        const { token, full_name, last_login } = response.data; // Ambil token dan data pengguna dari respons
+        localStorage.setItem("token", token);
+        localStorage.setItem("full_name", full_name);
+        localStorage.setItem("last_login", last_login);
+        toast.success("Login berhasil!");
+
+        // Jeda 2 detik sebelum redirect
+        setTimeout(() => {
+          window.location.href = "/home";
+        }, 2000);
+      }
+    } catch (error) {
+      if (
+        error.response &&
+        error.response.data &&
+        error.response.data.message
+      ) {
+        toast.error(error.response.data.message);
+      } else {
+        toast.error("Terjadi kesalahan. Silakan coba lagi.");
+      }
+    }
   };
 
   return (
@@ -50,8 +81,10 @@ const LoginPage = () => {
                   Email
                 </label>
                 <input
-                  type="text"
+                  type="email"
                   id="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   className="w-full px-3 py-2 focus:outline-none focus:border-secondary rounded-md"
                   required
                 />
@@ -66,6 +99,8 @@ const LoginPage = () => {
                 <input
                   type="password"
                   id="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                   className="w-full px-3 py-2 focus:outline-none focus:border-secondary rounded-md"
                   required
                 />
@@ -78,6 +113,7 @@ const LoginPage = () => {
                   Login
                 </button>
                 <button
+                  type="button"
                   className="bg-fifth text-white px-4 py-2 rounded-lg hover:bg-hover focus:outline-none font-freeman"
                   onClick={openModal}
                 >
@@ -89,7 +125,6 @@ const LoginPage = () => {
         </div>
       </div>
       {isModalOpen && <RegisterModal closeModal={closeModal} />}
-      <Footer />
       <ToastContainer />
     </div>
   );

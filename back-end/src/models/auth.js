@@ -77,6 +77,7 @@ const login = async (req, res) => {
     res.status(200).json({
       message: "Login success",
       token,
+      full_name: checkEmail[0].full_name, // Menyertakan full_name dalam respons
       last_login: checkEmail[0].last_login, // Menyertakan last_login dalam respons
     });
   } catch (error) {

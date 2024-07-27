@@ -49,9 +49,11 @@ const Home = () => {
   };
 
   const confirmDelete = () => {
-    setUsers(users.map((user) =>
-      user.email === userToDelete ? { ...user, status: "Inactive" } : user
-    ));
+    setUsers(
+      users.map((user) =>
+        user.email === userToDelete ? { ...user, status: "Inactive" } : user
+      )
+    );
     setShowDeleteModal(false);
     setUserToDelete(null);
   };
@@ -91,7 +93,11 @@ const Home = () => {
       <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-6xl">
         <div className="flex justify-between items-center mb-6">
           <h1 className="text-3xl font-bold text-gray-800">Admin Dashboard</h1>
-          <ButtonPrimary text="Logout" className="bg-red-500 hover:bg-red-700 w-fit p-2 font-bold" onClick={handleLogout} />
+          <ButtonPrimary
+            text="Logout"
+            className="bg-red-500 hover:bg-red-700 w-24 p-2 font-bold"
+            onClick={handleLogout}
+          />
         </div>
 
         <div className="mb-4">
@@ -164,11 +170,15 @@ const Home = () => {
                   <td className="py-2 px-4 border-b">{user.email}</td>
                   <td className="py-2 px-4 border-b">{user.birthDate}</td>
                   <td className="py-2 px-4 border-b">{user.gender}</td>
-                  <td className="py-2 px-4 border-b">{user.registrationDate}</td>
+                  <td className="py-2 px-4 border-b">
+                    {user.registrationDate}
+                  </td>
                   <td className="py-2 px-4 border-b">
                     <span
                       className={`px-2 py-1 rounded-full text-white ${
-                        user.status === "Active" ? "bg-green-500" : "bg-gray-500"
+                        user.status === "Active"
+                          ? "bg-green-500"
+                          : "bg-gray-500"
                       }`}
                     >
                       {user.status}
@@ -176,8 +186,20 @@ const Home = () => {
                   </td>
                   <td className="py-2 px-4 border-b">
                     <div className="flex items-center gap-2">
-                      <ButtonPrimary text="Edit" className={"mr-2 bg-blue-500 font-bold hover:bg-blue-700 p-2"} onClick={() => handleEdit(user)} />
-                      <ButtonPrimary text="Delete" className={"mr-2 bg-red-500 font-bold hover:bg-red-700 p-2"} onClick={() => handleDelete(user.email)} />
+                      <ButtonPrimary
+                        text="Edit"
+                        className={
+                          "mr-2 bg-blue-500 font-bold hover:bg-blue-700 p-2"
+                        }
+                        onClick={() => handleEdit(user)}
+                      />
+                      <ButtonPrimary
+                        text="Delete"
+                        className={
+                          "mr-2 bg-red-500 font-bold hover:bg-red-700 p-2"
+                        }
+                        onClick={() => handleDelete(user.email)}
+                      />
                     </div>
                   </td>
                 </tr>
@@ -195,24 +217,38 @@ const Home = () => {
                 placeholder="Name"
                 className="border p-2 rounded"
                 value={editUser.name}
-                onChange={(e) => setEditUser({ ...editUser, name: e.target.value })}
+                onChange={(e) =>
+                  setEditUser({ ...editUser, name: e.target.value })
+                }
               />
               <input
                 type="email"
                 placeholder="Email"
                 className="border p-2 rounded"
                 value={editUser.email}
-                onChange={(e) => setEditUser({ ...editUser, email: e.target.value })}
+                onChange={(e) =>
+                  setEditUser({ ...editUser, email: e.target.value })
+                }
               />
               <input
                 type="password"
                 placeholder="Password"
                 className="border p-2 rounded"
                 value={editUser.password || ""}
-                onChange={(e) => setEditUser({ ...editUser, password: e.target.value })}
+                onChange={(e) =>
+                  setEditUser({ ...editUser, password: e.target.value })
+                }
               />
-              <ButtonPrimary text="Save" className={"bg-green-500 font-bold hover:bg-green-700"} onClick={handleSave} />
-              <ButtonPrimary text="Cancel" className={"bg-gray-500 font-bold hover:bg-gray-700"} onClick={() => setEditUser(null)} />
+              <ButtonPrimary
+                text="Save"
+                className={"bg-green-500 font-bold hover:bg-green-700"}
+                onClick={handleSave}
+              />
+              <ButtonPrimary
+                text="Cancel"
+                className={"bg-gray-500 font-bold hover:bg-gray-700"}
+                onClick={() => setEditUser(null)}
+              />
             </div>
           </div>
         )}

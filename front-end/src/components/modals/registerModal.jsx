@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "axios";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -8,28 +9,44 @@ const RegisterModal = ({ closeModal }) => {
     email: "",
     password: "",
     birthDate: "",
-    gender: ""
+    gender: "",
   });
 
   const handleChange = (e) => {
     const { id, value } = e.target;
     setFormData({
       ...formData,
-      [id]: value
+      [id]: value,
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    // Simulasi pendaftaran sukses atau gagal
-    const isSuccess = Math.random() > 0.5; // Ubah sesuai dengan logika pendaftaran Anda
 
-    if (isSuccess) {
-      toast.success("Pendaftaran berhasil!");
-      closeModal(); // Tutup modal jika pendaftaran berhasil
-    } else {
-      toast.error("Pendaftaran gagal! Silakan coba lagi.");
+    // Menyesuaikan format data yang akan dikirim ke API
+    const dataToSend = {
+      full_name: formData.fullName,
+      email: formData.email,
+      password: formData.password,
+      date_of_birth: formData.birthDate,
+      gender: formData.gender,
+    };
+
+    try {
+      const response = await axios.post(
+        "http://localhost:4000/api/users",
+        dataToSend
+      );
+      if (response.status === 201) {
+        toast.success("Pendaftaran berhasil!", { autoClose: 2000 });
+        setTimeout(() => {
+          closeModal(); // Tutup modal jika pendaftaran berhasil setelah 2 detik
+        }, 2000); // Timeout 2 detik
+      } else {
+        toast.error("Email tidak boleh sama ", { autoClose: 2000 });
+      }
+    } catch (error) {
+      toast.error("Email tidak boleh sama ", { autoClose: 2000 });
     }
   };
 
@@ -47,7 +64,10 @@ const RegisterModal = ({ closeModal }) => {
           <h2 className="text-2xl mb-4 text-gray-800 font-freeman">Register</h2>
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="flex flex-col">
-              <label className="block mb-2 text-gray-800 font-freeman" htmlFor="fullName">
+              <label
+                className="block mb-2 text-gray-800 font-freeman"
+                htmlFor="fullName"
+              >
                 Nama Lengkap
               </label>
               <input
@@ -60,7 +80,10 @@ const RegisterModal = ({ closeModal }) => {
               />
             </div>
             <div className="flex flex-col">
-              <label className="block mb-2 text-gray-800 font-freeman" htmlFor="email">
+              <label
+                className="block mb-2 text-gray-800 font-freeman"
+                htmlFor="email"
+              >
                 Email
               </label>
               <input
@@ -73,7 +96,10 @@ const RegisterModal = ({ closeModal }) => {
               />
             </div>
             <div className="flex flex-col">
-              <label className="block mb-2 text-gray-800 font-freeman" htmlFor="password">
+              <label
+                className="block mb-2 text-gray-800 font-freeman"
+                htmlFor="password"
+              >
                 Password
               </label>
               <input
@@ -88,7 +114,10 @@ const RegisterModal = ({ closeModal }) => {
               />
             </div>
             <div className="flex flex-col">
-              <label className="block mb-2 text-gray-800 font-freeman" htmlFor="birthDate">
+              <label
+                className="block mb-2 text-gray-800 font-freeman"
+                htmlFor="birthDate"
+              >
                 Tanggal Lahir
               </label>
               <input
@@ -101,7 +130,10 @@ const RegisterModal = ({ closeModal }) => {
               />
             </div>
             <div className="flex flex-col">
-              <label className="block mb-2 text-gray-800 font-freeman" htmlFor="gender">
+              <label
+                className="block mb-2 text-gray-800 font-freeman"
+                htmlFor="gender"
+              >
                 Gender
               </label>
               <select
@@ -111,7 +143,9 @@ const RegisterModal = ({ closeModal }) => {
                 className="w-full px-3 py-2 border border-gray-300 rounded-md"
                 required
               >
-                <option value="" disabled>Select Gender</option>
+                <option value="" disabled>
+                  Select Gender
+                </option>
                 <option value="male">Male</option>
                 <option value="female">Female</option>
                 <option value="other">Other</option>

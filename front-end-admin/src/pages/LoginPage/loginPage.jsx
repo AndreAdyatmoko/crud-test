@@ -7,19 +7,21 @@ import Footer from "../footer/footer";
 const LoginPage = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleLogin = async (event) => {
     event.preventDefault();
     
     try {
       const response = await axios.post("http://localhost:4000/api/auth/login-admin", {
-        username: username,
-        password: password
+        username,
+        password
       });
 
       if (response.status === 200) {
         toast.success("Login berhasil!", {
-          autoClose: 2000});
+          autoClose: 2000,
+        });
         // Simpan token dan username ke localStorage
         localStorage.setItem("token", response.data.token);
         localStorage.setItem("username", username);
@@ -29,16 +31,17 @@ const LoginPage = () => {
         }, 2000); // Redirect setelah 2 detik
       } else {
         toast.error("Login gagal! Silakan coba lagi.", {
-          autoClose: 1000});
+          autoClose: 1000,
+        });
       }
     } catch (error) {
       if (error.response && error.response.data && error.response.data.message) {
         toast.error(`Login gagal! ${error.response.data.message}`, {
-          autoClose: 1000
+          autoClose: 1000,
         });
       } else {
         toast.error("Login gagal! Silakan coba lagi.", {
-          autoClose: 1000
+          autoClose: 1000,
         });
       }
     }
@@ -64,18 +67,25 @@ const LoginPage = () => {
               required
             />
           </div>
-          <div className="flex flex-col">
+          <div className="flex flex-col relative">
             <label htmlFor="password" className="text-black mb-1">
               Password
             </label>
             <input
-              type="password"
+              type={showPassword ? "text" : "password"}
               id="password"
               value={password}
               className="p-2 border rounded focus:outline-none focus:ring focus:ring-gray-300"
               onChange={(e) => setPassword(e.target.value)}
               required
             />
+            <button
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+              className="absolute right-1 top-8 bg-gray-200 p-1 rounded focus:outline-none"
+            >
+              {showPassword ? "Hide" : "Show"}
+            </button>
           </div>
           <button
             type="submit"

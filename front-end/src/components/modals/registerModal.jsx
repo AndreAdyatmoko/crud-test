@@ -11,6 +11,7 @@ const RegisterModal = ({ closeModal }) => {
     birthDate: "",
     gender: "",
   });
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleChange = (e) => {
     const { id, value } = e.target;
@@ -20,10 +21,13 @@ const RegisterModal = ({ closeModal }) => {
     });
   };
 
+  const toggleShowPassword = () => {
+    setShowPassword((prevState) => !prevState);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Menyesuaikan format data yang akan dikirim ke API
     const dataToSend = {
       full_name: formData.fullName,
       email: formData.email,
@@ -40,8 +44,8 @@ const RegisterModal = ({ closeModal }) => {
       if (response.status === 201) {
         toast.success("Pendaftaran berhasil!", { autoClose: 2000 });
         setTimeout(() => {
-          closeModal(); // Tutup modal jika pendaftaran berhasil setelah 2 detik
-        }, 2000); // Timeout 2 detik
+          closeModal();
+        }, 2000);
       } else {
         toast.error("Email tidak boleh sama ", { autoClose: 2000 });
       }
@@ -95,7 +99,7 @@ const RegisterModal = ({ closeModal }) => {
                 required
               />
             </div>
-            <div className="flex flex-col">
+            <div className="flex flex-col relative">
               <label
                 className="block mb-2 text-gray-800 font-freeman"
                 htmlFor="password"
@@ -103,7 +107,7 @@ const RegisterModal = ({ closeModal }) => {
                 Password
               </label>
               <input
-                type="password"
+                type={showPassword ? "text" : "password"}
                 id="password"
                 value={formData.password}
                 onChange={handleChange}
@@ -112,6 +116,13 @@ const RegisterModal = ({ closeModal }) => {
                 title="Password must be at least 6 characters long and contain both letters and numbers."
                 required
               />
+              <button
+                type="button"
+                className="absolute right-2 top-2 text-gray-800"
+                onClick={toggleShowPassword}
+              >
+                {showPassword ? "Hide" : "Show"}
+              </button>
             </div>
             <div className="flex flex-col">
               <label

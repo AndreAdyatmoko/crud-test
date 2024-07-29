@@ -6,6 +6,16 @@ import 'react-toastify/dist/ReactToastify.css';
 const ChangePasswordModal = ({ closeModal }) => {
   const [oldPassword, setOldPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
+  const [showOldPassword, setShowOldPassword] = useState(false);
+  const [showNewPassword, setShowNewPassword] = useState(false);
+
+  const toggleShowOldPassword = () => {
+    setShowOldPassword(prevState => !prevState);
+  };
+
+  const toggleShowNewPassword = () => {
+    setShowNewPassword(prevState => !prevState);
+  };
 
   const handleChangePassword = async (event) => {
     event.preventDefault();
@@ -50,31 +60,45 @@ const ChangePasswordModal = ({ closeModal }) => {
       <div className="bg-white p-6 rounded-lg shadow-lg max-w-sm w-full">
         <h2 className="text-2xl mb-4 font-semibold">Change Password</h2>
         <form onSubmit={handleChangePassword} className="space-y-4">
-          <div className="flex flex-col">
+          <div className="flex flex-col relative">
             <label className="block mb-2 text-gray-700" htmlFor="oldPassword">
-              Old Password
+              Password Lama
             </label>
             <input
-              type="password"
+              type={showOldPassword ? 'text' : 'password'}
               id="oldPassword"
               value={oldPassword}
               onChange={(e) => setOldPassword(e.target.value)}
               className="w-full px-3 py-2 border rounded-md"
               required
             />
+            <button
+              type="button"
+              className="absolute right-2 top-8 text-gray-700"
+              onClick={toggleShowOldPassword}
+            >
+              {showOldPassword ? 'Hide' : 'Show'}
+            </button>
           </div>
-          <div className="flex flex-col">
+          <div className="flex flex-col relative">
             <label className="block mb-2 text-gray-700" htmlFor="newPassword">
-              New Password
+              Password Baru
             </label>
             <input
-              type="password"
+              type={showNewPassword ? 'text' : 'password'}
               id="newPassword"
               value={newPassword}
               onChange={(e) => setNewPassword(e.target.value)}
               className="w-full px-3 py-2 border rounded-md"
               required
             />
+            <button
+              type="button"
+              className="absolute right-2 top-8 text-gray-700"
+              onClick={toggleShowNewPassword}
+            >
+              {showNewPassword ? 'Hide' : 'Show'}
+            </button>
           </div>
           <div className="flex justify-end gap-4 mt-4">
             <button
@@ -82,13 +106,13 @@ const ChangePasswordModal = ({ closeModal }) => {
               onClick={closeModal}
               className="bg-gray-500 text-white px-4 py-2 rounded-md"
             >
-              Cancel
+              Batalkan
             </button>
             <button
               type="submit"
               className="bg-blue-500 text-white px-4 py-2 rounded-md"
             >
-              Change Password
+              Ubah Password
             </button>
           </div>
         </form>

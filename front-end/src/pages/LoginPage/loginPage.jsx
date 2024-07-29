@@ -8,6 +8,7 @@ const LoginPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
   const openModal = (event) => {
     event.stopPropagation();
@@ -16,6 +17,10 @@ const LoginPage = () => {
 
   const closeModal = () => {
     setIsModalOpen(false);
+  };
+
+  const toggleShowPassword = () => {
+    setShowPassword((prevState) => !prevState);
   };
 
   const handleLogin = async (event) => {
@@ -30,13 +35,12 @@ const LoginPage = () => {
       );
 
       if (response.status === 200) {
-        const { token, full_name, last_login } = response.data; // Ambil token dan data pengguna dari respons
+        const { token, full_name, last_login } = response.data;
         localStorage.setItem("token", token);
         localStorage.setItem("full_name", full_name);
         localStorage.setItem("last_login", last_login);
         toast.success("Login berhasil!");
 
-        // Jeda 2 detik sebelum redirect
         setTimeout(() => {
           window.location.href = "/home";
         }, 2000);
@@ -96,14 +100,23 @@ const LoginPage = () => {
                 >
                   Password
                 </label>
-                <input
-                  type="password"
-                  id="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  className="w-full px-3 py-2 focus:outline-none focus:border-secondary rounded-md"
-                  required
-                />
+                <div className="relative">
+                  <input
+                    type={showPassword ? "text" : "password"}
+                    id="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    className="w-full px-3 py-2 focus:outline-none focus:border-secondary rounded-md"
+                    required
+                  />
+                  <button
+                    type="button"
+                    className="absolute right-2 top-2 text-black hover:text-primery"
+                    onClick={toggleShowPassword}
+                  >
+                    {showPassword ? "Hide" : "Show"}
+                  </button>
+                </div>
               </div>
               <div className="flex flex-col gap-4">
                 <button

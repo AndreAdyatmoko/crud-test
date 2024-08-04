@@ -3,6 +3,9 @@ import axios from "axios";
 import RegisterModal from "../../components/modals/registerModal";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import artImage from "../../assets/home/Art.png";
+import { FaEye } from "react-icons/fa";
+import { FaEyeSlash } from "react-icons/fa";
 
 const LoginPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -60,81 +63,94 @@ const LoginPage = () => {
 
   return (
     <div className="min-h-screen flex">
-      <div className="hidden md:flex flex-1">
-        <div className="bg-primery flex-1 min-h-screen flex justify-center items-center">
-          <div className="text-center bg-hover p-20 rounded-lg">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl text-white font-freeman">
-              Welcome to <br /> Landing Page
-            </h1>
-            <h2 className="text-white font-freeman">
-              Please Sign In, or Register to continue the process
-            </h2>
-          </div>
-        </div>
-        <div className="bg-fourth h-screen flex-1 min-h-screen flex justify-center items-center">
-          <div className="bg-secondary p-8 rounded-lg shadow-lg">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl text-white font-freeman justify-center items-center flex p-2">
-              User UI
-            </h2>
-            <form className="space-y-4" onSubmit={handleLogin}>
-              <div className="flex flex-col">
-                <label
-                  className="block mb-2 text-white font-freeman text-sm"
-                  htmlFor="email"
-                >
-                  Email
-                </label>
+      <div className="bg-white h-screen flex-1 min-h-screen flex justify-center items-center">
+        <div className="bg-white p-8 rounded-lg">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl text-black font-libre text-center justify-center items-center flex p-2">
+            Welcome Back 👋
+          </h2>
+          <p className="text-lg sm:text-xl md:text-2xl text-black justify-center font-libre items-center flex p-2 font-semibolde">
+            Today is a new day. It's your day. You shape it. Sign in to start
+            managing your projects.
+          </p>
+          <form className="space-y-4" onSubmit={handleLogin}>
+            <div className="flex flex-col p-2">
+              <label
+                className="block mb-2 text-black text-base font-libre"
+                htmlFor="email"
+              >
+                Email
+              </label>
+              <input
+                type="email"
+                id="email"
+                placeholder="Enter your email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="w-full border-2 border-customBorder bg-customBorder2 px-3 py-2 focus:outline-none rounded-xl"
+                required
+              />
+            </div>
+            <div className="flex flex-col px-2">
+              <label
+                className="block mb-2 text-black text-base font-libre"
+                htmlFor="password"
+              >
+                Password
+              </label>
+              <div className="relative">
                 <input
-                  type="email"
-                  id="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="w-full px-3 py-2 focus:outline-none focus:border-secondary rounded-md"
+                  type={showPassword ? "text" : "password"}
+                  id="password"
+                  placeholder="Enter your password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="w-full border-2 border-customBorder bg-customBorder2 px-3 py-2 focus:outline-none rounded-xl"
                   required
                 />
-              </div>
-              <div className="flex flex-col">
-                <label
-                  className="block mb-2 text-white font-freeman text-sm"
-                  htmlFor="password"
-                >
-                  Password
-                </label>
-                <div className="relative">
-                  <input
-                    type={showPassword ? "text" : "password"}
-                    id="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    className="w-full px-3 py-2 focus:outline-none focus:border-secondary rounded-md"
-                    required
-                  />
-                  <button
-                    type="button"
-                    className="absolute right-2 top-2 text-black hover:text-primery"
-                    onClick={toggleShowPassword}
-                  >
-                    {showPassword ? "Hide" : "Show"}
-                  </button>
-                </div>
-              </div>
-              <div className="flex flex-col gap-4">
-                <button
-                  type="submit"
-                  className="bg-primery text-white px-4 py-2 rounded-lg hover:bg-hover focus:outline-none font-freeman"
-                >
-                  Login
-                </button>
                 <button
                   type="button"
-                  className="bg-fifth text-white px-4 py-2 rounded-lg hover:bg-hover focus:outline-none font-freeman"
-                  onClick={openModal}
+                  className="absolute right-4 top-3"
+                  onClick={toggleShowPassword}
                 >
-                  Register
+                  {showPassword ? <FaEyeSlash /> : <FaEye />}
                 </button>
               </div>
-            </form>
-          </div>
+            </div>
+            <div className="flex justify-end px-2">
+              <p>
+                <a
+                  href="/forgot-password"
+                  className="font-libre text-base text-blue-700 hover:underline"
+                >
+                  Forgot password?
+                </a>
+              </p>
+            </div>
+            <div className="flex flex-col gap-4">
+              <button
+                type="submit"
+                className="bg-customBg text-white px-4 py-2 rounded-lg hover:bg-hover hover:text-black focus:outline-none font-libre"
+              >
+                Login
+              </button>
+              <button
+                type="button"
+                className="bg-fifth text-white px-4 py-2 rounded-lg hover:bg-hover focus:outline-none font-freeman"
+                onClick={openModal}
+              >
+                Register
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div className="hidden md:flex flex-1">
+        <div className="w-full h-screen">
+        <img
+          src={artImage}
+          alt="Login"
+          className="w-full h-screen p-8 rounded-3xl"
+        />
         </div>
       </div>
       {isModalOpen && <RegisterModal closeModal={closeModal} />}

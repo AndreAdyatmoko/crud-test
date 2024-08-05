@@ -42,10 +42,10 @@ const LoginPage = () => {
         localStorage.setItem("token", token);
         localStorage.setItem("full_name", full_name);
         localStorage.setItem("last_login", last_login);
-        toast.success("Login berhasil!");
+        toast.success("Login successful!");
 
         setTimeout(() => {
-          window.location.href = "/home";
+          window.location.href = "/";
         }, 2000);
       }
     } catch (error) {
@@ -54,16 +54,18 @@ const LoginPage = () => {
         error.response.data &&
         error.response.data.message
       ) {
-        toast.error(error.response.data.message);
+        toast.error("Email or password is incorrect!", {
+          autoClose: 1000,
+        });
       } else {
-        toast.error("Terjadi kesalahan. Silakan coba lagi.");
+        toast.error("Something went wrong. Please try again later.");
       }
     }
   };
 
   return (
-    <div className="min-h-screen flex">
-      <div className="bg-white h-screen flex-1 min-h-screen flex justify-center items-center">
+    <div className="min-h-screen flex py-10">
+      <div className="bg-white h-screen flex-1 min-h-screen flex justify-center items-center ">
         <div className="bg-white p-8 rounded-lg">
           <h2 className="text-2xl sm:text-3xl md:text-4xl text-black font-libre text-center justify-center items-center flex p-2">
             Welcome Back 👋
@@ -129,13 +131,13 @@ const LoginPage = () => {
             <div className="flex flex-col gap-4">
               <button
                 type="submit"
-                className="bg-customBg text-white px-4 py-2 rounded-lg hover:bg-hover hover:text-black focus:outline-none font-libre"
+                className="bg-customBg text-white px-4 py-2 rounded-lg hover:bg-zinc-800 hover:text-white hover:font-extrabold focus:outline-none font-libre"
               >
                 Login
               </button>
               <button
                 type="button"
-                className="bg-fifth text-white px-4 py-2 rounded-lg hover:bg-hover focus:outline-none font-freeman"
+                className="bg-fifth text-white font-libre px-4 py-2 rounded-lg hover:border-x-lime-300 hover:font-extrabold focus:outline-none "
                 onClick={openModal}
               >
                 Register
@@ -144,12 +146,12 @@ const LoginPage = () => {
           </form>
         </div>
       </div>
-      <div className="hidden md:flex flex-1">
-        <div className="w-full h-screen">
+      <div className="hidden md:flex flex-1 p-4">
+        <div className="w-full h-auto">
         <img
           src={artImage}
           alt="Login"
-          className="w-full h-screen p-8 rounded-3xl"
+          className="w-full h-screen p-8 rounded-lg"
         />
         </div>
       </div>

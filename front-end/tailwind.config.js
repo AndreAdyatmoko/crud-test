@@ -19,7 +19,8 @@ module.exports = {
         "modal-hover": "#172554",
         customBorder: "#D4D7E3", // Tambahkan warna kustom di sini
         customBorder2: "#F7FBFF",
-        customBg :"#162D3A"
+        customBg :"#162D3A",
+        customBg2 : "#161616"
       },
     },
   },

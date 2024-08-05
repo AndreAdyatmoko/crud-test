@@ -6,6 +6,7 @@ import Navbar from './pages/navbar/navbar'
 import Footer from './pages/footer/footer'
 import About from './pages/about/about'
 import Contact from './pages/contact/contact'
+import Home2 from './pages/LandingPage/home2'
 
 const App = () => {
   return (
@@ -13,6 +14,7 @@ const App = () => {
       <Navbar />
       <Routes>
         <Route path='/' element={<Home />} />
+        <Route path='/home' element={<Home2 />} />
         <Route path='/login' element={<LoginPage/>} />
         <Route path='/about' element={<About/>} />
         <Route path='/contact' element={<Contact/>} />

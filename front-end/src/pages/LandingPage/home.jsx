@@ -13,6 +13,7 @@ import Ford from "../../assets/brand/ford.png";
 import Tesla from "../../assets/brand/tesla.png";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import Home2 from "./home2";
 
 const brandLogos = [
   { src: Pagani, alt: "Pagani" },
@@ -103,6 +104,7 @@ const Home = () => {
           </div>
         </div>
       </main>
+      <Home2 />
     </div>
   );
 };

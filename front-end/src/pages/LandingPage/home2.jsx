@@ -26,9 +26,17 @@ const Products = [
 const CardFlashSale = ({ imageUrl, title, price, discount }) => {
   return (
     <div className="bg-customBg rounded-xl shadow-md p-4 flex flex-col items-center mx-2">
-      <img src={imageUrl} alt={title} className="w-full h-48 overflow-hidden rounded-lg mb-4" />
-      <h3 className="text-lg sm:text-xl font-semibold text-white font-libre">{title}</h3>
-      <p className="text-md sm:text-lg font-bold text-white font-libre">{price}</p>
+      <img
+        src={imageUrl}
+        alt={title}
+        className="w-full h-48 overflow-hidden rounded-lg mb-4"
+      />
+      <h3 className="text-lg sm:text-xl font-semibold text-white font-libre">
+        {title}
+      </h3>
+      <p className="text-md sm:text-lg font-bold text-white font-libre">
+        {price}
+      </p>
       <p className="text-sm text-red-500 mb-2">Discount: {discount}</p>
       <button className="bg-blue-500 text-white px-3 py-2 sm:px-4 sm:py-2 rounded-lg hover:bg-hover hover:text-xl">
         Buy Now
@@ -58,7 +66,9 @@ const Home2 = () => {
     if (difference > 0) {
       timeLeft = {
         days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-        hours: Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+        hours: Math.floor(
+          (difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+        ),
         minutes: Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60)),
         seconds: Math.floor((difference % (1000 * 60)) / 1000),
       };
@@ -104,7 +114,9 @@ const Home2 = () => {
     <div className="bg-customBg2 text-gray-900 flex flex-col min-h-screen p-4 sm:px-8 lg:px-28">
       <main className="flex-1 flex flex-col justify-center items-start px-4">
         <div>
-          <p className="text-xl font-libre font-bold text-white">Today's</p>
+          <p className="text-xl font-libre font-bold text-white flex gap-2">
+            <div className="w-3 h-8 bg-white rounded-md"></div>Today's
+          </p>
         </div>
         <div className="w-full max-w-screen-lg flex flex-col gap-8 py-4">
           <div className="flex flex-col sm:flex-row gap-4">
@@ -112,7 +124,9 @@ const Home2 = () => {
               Flash Sales
             </p>
             <div className="flex flex-col gap-1">
-              <p className="text-lg sm:text-xl font-bold text-white mt-1">Time Left:</p>
+              <p className="text-lg sm:text-xl font-bold text-white mt-1">
+                Time Left:
+              </p>
               <p className="text-2xl sm:text-3xl font-libre font-bold text-white">
                 {timeLeft.days} Days {timeLeft.hours} Hours {timeLeft.minutes}{" "}
                 Minutes {timeLeft.seconds} Seconds
@@ -130,6 +144,11 @@ const Home2 = () => {
               />
             ))}
           </Slider>
+          <div className="flex justify-center w-full">
+            <button className="bg-blue-500 text-white px-3 py-2 sm:px-4 sm:py-2 rounded-lg hover:bg-hover w-44">
+              View All Products
+            </button>
+          </div>
         </div>
       </main>
     </div>

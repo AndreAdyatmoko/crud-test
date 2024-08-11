@@ -43,7 +43,7 @@ const Home4 = () => {
 
   return (
     <div className="bg-customBg2 text-gray-900 p-4 sm:px-8 lg:px-28">
-      <main className="flex-1 flex flex-col items-start">
+      <main className="flex-1 flex flex-col items-start px-4">
         {/* Judul Section */}
         <div className="flex items-center gap-2 mb-4">
           <div className="w-3 h-8 bg-white rounded-md"></div>

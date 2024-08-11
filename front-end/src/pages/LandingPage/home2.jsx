@@ -9,6 +9,7 @@ import Product6 from "../../assets/product/6.jpg";
 import Product7 from "../../assets/product/7.jpg";
 import Product8 from "../../assets/product/8.jpg";
 import Product9 from "../../assets/product/9.jpg";
+import { FaShoppingCart, FaHeart } from "react-icons/fa";
 
 const Products = [
   { imageUrl: Product1, title: "Product 1", price: "$10.00", discount: "10%" },
@@ -38,9 +39,19 @@ const CardFlashSale = ({ imageUrl, title, price, discount }) => {
         {price}
       </p>
       <p className="text-sm text-red-500 mb-2">Discount: {discount}</p>
-      <button className="bg-blue-500 text-white px-3 py-2 sm:px-4 sm:py-2 rounded-lg hover:bg-hover hover:text-xl">
-        Buy Now
-      </button>
+
+      {/* Actions: Like, Cart, Buy Now */}
+      <div className="flex justify-between items-center mt-4 w-full">
+        <button className="text-red-500 hover:text-red-700">
+          <FaHeart size={20} />
+        </button>
+        <button className="text-white bg-blue-500 px-3 py-2 sm:px-4 sm:py-2 rounded-lg hover:bg-hover">
+          Buy Now
+        </button>
+        <button className="text-white px-3 py-2 sm:px-4 sm:py-2 rounded-lg hover:bg-hover">
+          <FaShoppingCart size={20} />
+        </button>
+      </div>
     </div>
   );
 };

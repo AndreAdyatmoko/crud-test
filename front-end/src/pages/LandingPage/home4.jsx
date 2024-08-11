@@ -6,6 +6,7 @@ import Prod4 from "../../assets/product/prod4.jpg";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
+import { FaShoppingCart, FaHeart } from "react-icons/fa";
 
 const products = [
   { imageUrl: Prod1, title: "Product 1", price: "$10.00" },
@@ -67,7 +68,7 @@ const Home4 = () => {
           <Slider {...settings}>
             {products.map((product, index) => (
               <div key={index} className="px-2">
-                <div className="bg-customBg p-4 rounded-md text-white">
+                <div className="bg-customBg p-4 rounded-md text-white relative">
                   <img
                     src={product.imageUrl}
                     alt={product.title}
@@ -75,6 +76,19 @@ const Home4 = () => {
                   />
                   <p className="text-lg font-semibold">{product.title}</p>
                   <p className="text-md">{product.price}</p>
+                  
+                  {/* Actions: Like, Cart, Buy Now */}
+                  <div className="flex justify-between items-center mt-4">
+                    <button className="text-red-500 hover:text-red-700">
+                      <FaHeart size={20} />
+                    </button>
+                    <button className="text-white bg-blue-500 px-3 py-2 rounded-lg hover:bg-hover">
+                      Buy Now
+                    </button>
+                    <button className="text-white px-3 py-2 rounded-lg hover:bg-hover">
+                      <FaShoppingCart size={20} />
+                    </button>
+                  </div>
                 </div>
               </div>
             ))}

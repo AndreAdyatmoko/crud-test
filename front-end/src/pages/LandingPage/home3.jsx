@@ -39,7 +39,7 @@ const Home3 = () => {
               key={index}
               className="bg-customBg flex-1 min-w-[150px] h-32 flex items-center justify-center border border-white rounded-md text-white text-center"
             >
-              <button className="w-full h-full hover:bg-customBg3 hover:font-bold flex flex-col items-center justify-center gap-2">
+              <button className="w-full h-full hover:bg-customBg3 hover:rounded-md hover:font-bold flex flex-col items-center justify-center gap-2">
                 {category.icon}
                 <span>{category.name}</span>
               </button>

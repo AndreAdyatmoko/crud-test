@@ -20,7 +20,8 @@ module.exports = {
         customBorder: "#D4D7E3", // Tambahkan warna kustom di sini
         customBorder2: "#F7FBFF",
         customBg :"#162D3A",
-        customBg2 : "#161616"
+        customBg2 : "#161616",
+        customBg3 : "#06548D"
       },
     },
   },

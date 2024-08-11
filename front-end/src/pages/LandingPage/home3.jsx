@@ -1,6 +1,21 @@
 import React from "react";
+import { IoPhonePortraitOutline } from "react-icons/io5";
+import { FaCamera } from "react-icons/fa";
+import { FaHeadphones } from "react-icons/fa";
+import { MdComputer } from "react-icons/md";
+import { SiYoutubegaming } from "react-icons/si";
+import { BsSmartwatch } from "react-icons/bs";
 
 const Home3 = () => {
+  const categories = [
+    { name: "Phones", icon: <IoPhonePortraitOutline size={34} /> },
+    { name: "Camera", icon: <FaCamera size={34} /> },
+    { name: "HeadPhones", icon: <FaHeadphones size={34} /> },
+    { name: "Gaming", icon: <SiYoutubegaming size={34} /> },
+    { name: "Computers", icon: <MdComputer size={34} /> },
+    { name: "SmartWatch", icon: <BsSmartwatch size={34} /> },
+  ];
+
   return (
     <div className="bg-customBg2 text-gray-900 flex flex-col min-h-screen p-4 sm:px-8 lg:px-28">
       <main className="flex-1 flex flex-col items-start px-4">
@@ -18,25 +33,18 @@ const Home3 = () => {
         </div>
 
         {/* Daftar Kategori */}
-        <div className="w-full max-w-screen-lg flex flex-wrap gap-4 px-4">
-          <div className="flex-1 min-w-[150px] h-32 flex items-center justify-center border border-white rounded-md text-white bg-gray-800 text-center">
-            Phones
-          </div>
-          <div className="flex-1 min-w-[150px] h-32 flex items-center justify-center border border-white rounded-md text-white bg-gray-800 text-center">
-            Laptops
-          </div>
-          <div className="flex-1 min-w-[150px] h-32 flex items-center justify-center border border-white rounded-md text-white bg-gray-800 text-center">
-            Accessories
-          </div>
-          <div className="flex-1 min-w-[150px] h-32 flex items-center justify-center border border-white rounded-md text-white bg-gray-800 text-center">
-            Home Appliances
-          </div>
-          <div className="flex-1 min-w-[150px] h-32 flex items-center justify-center border border-white rounded-md text-white bg-gray-800 text-center">
-            Fashion
-          </div>
-          <div className="flex-1 min-w-[150px] h-32 flex items-center justify-center border border-white rounded-md text-white bg-gray-800 text-center">
-            Toys
-          </div>
+        <div className="w-full max-w-screen-lg flex flex-wrap gap-4 px-2">
+          {categories.map((category, index) => (
+            <div
+              key={index}
+              className="bg-customBg flex-1 min-w-[150px] h-32 flex items-center justify-center border border-white rounded-md text-white text-center"
+            >
+              <button className="w-full h-full hover:bg-customBg3 hover:font-bold flex flex-col items-center justify-center gap-2">
+                {category.icon}
+                <span>{category.name}</span>
+              </button>
+            </div>
+          ))}
         </div>
       </main>
     </div>

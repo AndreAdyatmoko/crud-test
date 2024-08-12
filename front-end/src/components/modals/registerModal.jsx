@@ -58,18 +58,18 @@ const RegisterModal = ({ closeModal }) => {
     <>
       <div
         id="popup-modal"
-        className="fixed top-0 right-0 left-0 z-50 flex justify-center items-center w-full h-screen bg-black bg-opacity-50"
+        className="fixed top-0 right-0 left-0 z-50 flex justify-center items-center w-full h-screen bg-black bg-opacity-70"
         onClick={closeModal}
       >
         <div
-          className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md"
+          className="bg-gray-800 p-8 rounded-lg shadow-lg w-full max-w-md"
           onClick={(e) => e.stopPropagation()}
         >
-          <h2 className="text-2xl mb-4 text-gray-800 font-freeman">Register</h2>
+          <h2 className="text-2xl mb-4 text-white font-freeman">Register</h2>
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="flex flex-col">
               <label
-                className="block mb-2 text-gray-800 font-freeman"
+                className="block mb-2 text-gray-200 font-freeman"
                 htmlFor="fullName"
               >
                 Nama Lengkap
@@ -79,13 +79,13 @@ const RegisterModal = ({ closeModal }) => {
                 id="fullName"
                 value={formData.fullName}
                 onChange={handleChange}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md"
+                className="w-full px-3 py-2 border border-gray-600 bg-gray-700 text-gray-100 rounded-md"
                 required
               />
             </div>
             <div className="flex flex-col">
               <label
-                className="block mb-2 text-gray-800 font-freeman"
+                className="block mb-2 text-gray-200 font-freeman"
                 htmlFor="email"
               >
                 Email
@@ -95,13 +95,13 @@ const RegisterModal = ({ closeModal }) => {
                 id="email"
                 value={formData.email}
                 onChange={handleChange}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md"
+                className="w-full px-3 py-2 border border-gray-600 bg-gray-700 text-gray-100 rounded-md"
                 required
               />
             </div>
             <div className="flex flex-col relative">
               <label
-                className="block mb-2 text-gray-800 font-freeman"
+                className="block mb-2 text-gray-200 font-freeman"
                 htmlFor="password"
               >
                 Password
@@ -111,14 +111,14 @@ const RegisterModal = ({ closeModal }) => {
                 id="password"
                 value={formData.password}
                 onChange={handleChange}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md"
+                className="w-full px-3 py-2 border border-gray-600 bg-gray-700 text-gray-100 rounded-md"
                 pattern="(?=.*[a-zA-Z])(?=.*[0-9]).{6,}"
                 title="Password must be at least 6 characters long and contain both letters and numbers."
                 required
               />
               <button
                 type="button"
-                className="absolute right-2 top-2 text-gray-800"
+                className="absolute right-2 top-2 text-gray-200 hover:text-white"
                 onClick={toggleShowPassword}
               >
                 {showPassword ? "Hide" : "Show"}
@@ -126,7 +126,7 @@ const RegisterModal = ({ closeModal }) => {
             </div>
             <div className="flex flex-col">
               <label
-                className="block mb-2 text-gray-800 font-freeman"
+                className="block mb-2 text-gray-200 font-freeman"
                 htmlFor="birthDate"
               >
                 Tanggal Lahir
@@ -136,13 +136,13 @@ const RegisterModal = ({ closeModal }) => {
                 id="birthDate"
                 value={formData.birthDate}
                 onChange={handleChange}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md"
+                className="w-full px-3 py-2 border border-gray-600 bg-gray-700 text-gray-100 rounded-md"
                 required
               />
             </div>
             <div className="flex flex-col">
               <label
-                className="block mb-2 text-gray-800 font-freeman"
+                className="block mb-2 text-gray-200 font-freeman"
                 htmlFor="gender"
               >
                 Gender
@@ -151,7 +151,7 @@ const RegisterModal = ({ closeModal }) => {
                 id="gender"
                 value={formData.gender}
                 onChange={handleChange}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md"
+                className="w-full px-3 py-2 border border-gray-600 bg-gray-700 text-gray-100 rounded-md"
                 required
               >
                 <option value="" disabled>
@@ -165,7 +165,7 @@ const RegisterModal = ({ closeModal }) => {
             <div className="flex flex-col mt-4">
               <button
                 type="submit"
-                className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 focus:outline-none"
+                className="bg-blue-700 text-white px-4 py-2 rounded-lg hover:bg-blue-800 focus:outline-none"
               >
                 Register
               </button>

@@ -64,20 +64,20 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="min-h-screen flex py-10">
-      <div className="bg-white h-screen flex-1 min-h-screen flex justify-center items-center ">
-        <div className="bg-white p-8 rounded-lg">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl text-black font-libre text-center justify-center items-center flex p-2">
+    <div className="min-h-screen flex py-10 bg-gray-900 text-gray-100">
+      <div className="bg-gray-900 h-screen flex-1 min-h-screen flex justify-center items-center">
+        <div className="bg-gray-800 p-8 rounded-lg">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl text-white font-libre text-center justify-center items-center flex p-2">
             Welcome Back 👋
           </h2>
-          <p className="text-lg sm:text-xl md:text-2xl text-black justify-center font-libre items-center flex p-2 font-semibolde">
+          <p className="text-lg sm:text-xl md:text-2xl text-gray-400 justify-center font-libre items-center flex p-2 font-semibold">
             Today is a new day. It's your day. You shape it. Sign in to start
             managing your projects.
           </p>
           <form className="space-y-4" onSubmit={handleLogin}>
             <div className="flex flex-col p-2">
               <label
-                className="block mb-2 text-black text-base font-libre"
+                className="block mb-2 text-gray-400 text-base font-libre"
                 htmlFor="email"
               >
                 Email
@@ -88,13 +88,13 @@ const LoginPage = () => {
                 placeholder="Enter your email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full border-2 border-customBorder bg-customBorder2 px-3 py-2 focus:outline-none rounded-xl"
+                className="w-full border-2 border-gray-600 bg-gray-700 text-gray-100 px-3 py-2 focus:outline-none rounded-xl"
                 required
               />
             </div>
             <div className="flex flex-col px-2">
               <label
-                className="block mb-2 text-black text-base font-libre"
+                className="block mb-2 text-gray-400 text-base font-libre"
                 htmlFor="password"
               >
                 Password
@@ -106,12 +106,12 @@ const LoginPage = () => {
                   placeholder="Enter your password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="w-full border-2 border-customBorder bg-customBorder2 px-3 py-2 focus:outline-none rounded-xl"
+                  className="w-full border-2 border-gray-600 bg-gray-700 text-gray-100 px-3 py-2 focus:outline-none rounded-xl"
                   required
                 />
                 <button
                   type="button"
-                  className="absolute right-4 top-3"
+                  className="absolute right-4 top-3 text-gray-400 hover:text-white"
                   onClick={toggleShowPassword}
                 >
                   {showPassword ? <FaEyeSlash /> : <FaEye />}
@@ -122,7 +122,7 @@ const LoginPage = () => {
               <p>
                 <a
                   href="/forgot-password"
-                  className="font-libre text-base text-blue-700 hover:underline transition duration-300"
+                  className="font-libre text-base text-blue-400 hover:underline transition duration-300"
                 >
                   Forgot password?
                 </a>
@@ -131,13 +131,13 @@ const LoginPage = () => {
             <div className="flex flex-col gap-4">
               <button
                 type="submit"
-                className="bg-customBg text-white px-4 py-2 rounded-lg hover:bg-zinc-800 hover:text-white hover:font-extrabold focus:outline-none font-libre transition duration-300"
+                className="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 focus:outline-none font-libre transition duration-300"
               >
                 Login
               </button>
               <button
                 type="button"
-                className="bg-fifth text-white font-libre px-4 py-2 rounded-lg hover:border-x-lime-300 hover:font-extrabold focus:outline-none transition duration-300"
+                className="bg-teal-600 text-white font-libre px-4 py-2 rounded-lg hover:bg-teal-700 focus:outline-none transition duration-300"
                 onClick={openModal}
               >
                 Register
@@ -146,7 +146,7 @@ const LoginPage = () => {
           </form>
         </div>
       </div>
-      <div className="hidden md:flex flex-1 p-4">
+      <div className="hidden md:flex flex-1 p-4 bg-gray-900">
         <div className="w-full h-auto">
           <img
             src={artImage}

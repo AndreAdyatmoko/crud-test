@@ -54,22 +54,22 @@ const Home = () => {
       <main className="flex-1 flex flex-col justify-center items-center p-4">
         <div className="w-full max-w-screen-lg flex flex-col md:flex-row gap-8">
           <div className="w-full md:w-1/2 text-3xl font-libre text-white">
-            <p className="text-4xl sm:xl font-bold font-sans text-white hover:text-yellow-300">
+            <p className="text-4xl sm:xl font-bold font-sans text-white hover:text-yellow-300 transition duration-300">
               Ready to take your <br />
-              <span className="text-teal-300 hover:text-lime-600">
+              <span className="text-teal-300 hover:text-lime-600 transition duration-300">
                 Business Growth
               </span>
               <br />
-              <span className="text-white hover:text-yellow-300">
+              <span className="text-white hover:text-yellow-300 transition duration-300">
                 to the next level?
               </span>
             </p>
-            <p className="text-lg py-4 font-sans text-zinc-400 hover:text-white">
+            <p className="text-lg py-4 font-sans text-zinc-400 hover:text-white transition duration-300">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ut
               massa libero. Egestas malesuada viverra gravida libero cursus
               nulla leo pulvinar.
             </p>
-            <button className="flex items-center gap-2 text-black bg-white rounded-full focus:outline-none font-freeman hover:text-teal-300 px-4 py-2">
+            <button className="flex items-center gap-2 text-black bg-white rounded-full focus:outline-none font-freeman hover:text-teal-300 px-4 py-2 transition duration-300">
               <IoIosArrowDroprightCircle />
               <p className="text-xs font-sans text-center">
                 Start your Free Trial

@@ -42,13 +42,13 @@ const Navbar = () => {
             <>
               <Link
                 to="/get-in-touch"
-                className="bg-white text-black font-libre px-2 py-1 rounded-full hover:font-extrabold focus:outline-none"
+                className="bg-white text-black font-libre px-2 py-1 rounded-full hover:font-extrabold focus:outline-none transition duration-300"
               >
                 Get in Touch
               </Link>
               <Link
                 to="/login"
-                className="bg-white text-black font-libre px-2 py-1 rounded-full hover:font-extrabold focus:outline-none"
+                className="bg-white text-black font-libre px-2 py-1 rounded-full hover:font-extrabold focus:outline-none transition duration-300"
               >
                 Login
               </Link>

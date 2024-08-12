@@ -122,7 +122,7 @@ const LoginPage = () => {
               <p>
                 <a
                   href="/forgot-password"
-                  className="font-libre text-base text-blue-700 hover:underline"
+                  className="font-libre text-base text-blue-700 hover:underline transition duration-300"
                 >
                   Forgot password?
                 </a>
@@ -131,13 +131,13 @@ const LoginPage = () => {
             <div className="flex flex-col gap-4">
               <button
                 type="submit"
-                className="bg-customBg text-white px-4 py-2 rounded-lg hover:bg-zinc-800 hover:text-white hover:font-extrabold focus:outline-none font-libre"
+                className="bg-customBg text-white px-4 py-2 rounded-lg hover:bg-zinc-800 hover:text-white hover:font-extrabold focus:outline-none font-libre transition duration-300"
               >
                 Login
               </button>
               <button
                 type="button"
-                className="bg-fifth text-white font-libre px-4 py-2 rounded-lg hover:border-x-lime-300 hover:font-extrabold focus:outline-none "
+                className="bg-fifth text-white font-libre px-4 py-2 rounded-lg hover:border-x-lime-300 hover:font-extrabold focus:outline-none transition duration-300"
                 onClick={openModal}
               >
                 Register
@@ -148,11 +148,11 @@ const LoginPage = () => {
       </div>
       <div className="hidden md:flex flex-1 p-4">
         <div className="w-full h-auto">
-        <img
-          src={artImage}
-          alt="Login"
-          className="w-full h-screen p-8 rounded-lg"
-        />
+          <img
+            src={artImage}
+            alt="Login"
+            className="w-full h-screen p-8 rounded-lg"
+          />
         </div>
       </div>
       {isModalOpen && <RegisterModal closeModal={closeModal} />}

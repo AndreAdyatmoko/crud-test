@@ -20,12 +20,12 @@ const Footer = () => {
           <div className="w-full md:w-1/4">
             <p className="text-lg font-libre font-bold mb-4 md:mb-0">Pages</p>
             <div className="text-sm font-libre leading-relaxed mt-2 text-zinc-400">
-              <p className="hover:text-white">Home 1</p>
-              <p className="hover:text-white">Home 2</p>
-              <p className="hover:text-white">About</p>
-              <p className="hover:text-white">Contact Us</p>
-              <p className="hover:text-white">Portfolio</p>
-              <p className="hover:text-white">Blog</p>
+              <p className="hover:text-white transition duration-300">Home 1</p>
+              <p className="hover:text-white transition duration-300">Home 2</p>
+              <p className="hover:text-white transition duration-300">About</p>
+              <p className="hover:text-white transition duration-300">Contact Us</p>
+              <p className="hover:text-white transition duration-300">Portfolio</p>
+              <p className="hover:text-white transition duration-300">Blog</p>
             </div>
           </div>
 
@@ -33,12 +33,12 @@ const Footer = () => {
           <div className="w-full md:w-1/4">
             <p className="text-lg font-libre font-bold mb-4 md:mb-0">Utility Pages</p>
             <div className="text-sm font-libre leading-relaxed mt-2 text-zinc-400">
-              <p className="hover:text-white">Style Guide</p>
-              <p className="hover:text-white">Instruction</p>
-              <p className="hover:text-white">License</p>
-              <p className="hover:text-white">Changelog</p>
-              <p className="hover:text-white">Error 404</p>
-              <p className="hover:text-white">Password Protected</p>
+              <p className="hover:text-white transition duration-300">Style Guide</p>
+              <p className="hover:text-white transition duration-300">Instruction</p>
+              <p className="hover:text-white transition duration-300">License</p>
+              <p className="hover:text-white transition duration-300">Changelog</p>
+              <p className="hover:text-white transition duration-300">Error 404</p>
+              <p className="hover:text-white transition duration-300">Password Protected</p>
             </div>
           </div>
 

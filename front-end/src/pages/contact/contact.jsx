@@ -16,7 +16,7 @@ const Contact = () => {
               </p>
             </div>
             <div className="py-4">
-              <p className="text-sm py-4 font-sans text-zinc-400 hover:text-white">
+              <p className="text-sm py-4 font-sans text-zinc-400 hover:text-white transition duration-300">
                 Have questions? We would love to hear from you. Please fill out
                 the form below, and one of our team members will get back to you
                 as soon as possible.
@@ -37,7 +37,7 @@ const Contact = () => {
                   rows="5"
                   className="p-2 rounded-xl text-lg bg-gray-800 text-white focus:outline-none"
                 ></textarea>
-                <button className="flex items-center gap-2 text-black bg-white rounded-full focus:outline-none font-freeman hover:text-teal-300 px-4 py-2">
+                <button className="flex items-center gap-2 text-black bg-white rounded-full focus:outline-none font-freeman hover:text-teal-300 px-4 py-2 transition duration-300">
                   <IoIosArrowDroprightCircle />
                   <p className="text-xs font-sans text-center">Send Message</p>
                 </button>

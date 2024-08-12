@@ -25,24 +25,24 @@ const About = () => {
               <div className="flex gap-4 text-teal-300 text-2xl sm:xl font-sans pt-4">
                 <p>
                   330 + <br />{" "}
-                  <span className="text-sm py-4 font-sans text-zinc-400 hover:text-white">
+                  <span className="text-sm py-4 font-sans text-zinc-400 hover:text-white transition duration-300">
                     Companies helped
                   </span>{" "}
                 </p>
                 <p>
                   230 + <br />{" "}
-                  <span className="text-sm py-4 font-sans text-zinc-400 hover:text-white">
+                  <span className="text-sm py-4 font-sans text-zinc-400 hover:text-white transition duration-300">
                     Revenue generated
                   </span>
                 </p>
               </div>
-              <p className="text-sm py-4 font-sans text-zinc-400 hover:text-white">
+              <p className="text-sm py-4 font-sans text-zinc-400 hover:text-white transition duration-300">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam
                 ut massa libero. Egestas malesuada viverra gravida libero cursus
                 nulla leo pulvinar.
               </p>
             </div>
-            <button className="flex items-center gap-2 text-black bg-white rounded-full focus:outline-none font-freeman hover:text-teal-300 px-4 py-2">
+            <button className="flex items-center gap-2 text-black bg-white rounded-full focus:outline-none font-freeman hover:text-teal-300 px-4 py-2 transition duration-300">
               <IoIosArrowDroprightCircle />
               <p className="text-xs font-sans text-center">
                 Start your Free Trial

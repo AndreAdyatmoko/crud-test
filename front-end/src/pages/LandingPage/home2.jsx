@@ -41,20 +41,15 @@ const CardFlashSale = ({ imageUrl, title, price, discount }) => {
       <p className="text-sm text-red-500 mb-2">Discount: {discount}</p>
 
       {/* Actions: Like, Cart, Buy Now */}
-      <div className="flex gap-1 sm:gap-2 md:gap-8 lg:gap-8 justify-center mt-2 sm:mt-4 w-full">
-        <button className="text-red-500 hover:text-red-700">
-          <FaHeart className="w-4 h-4 sm:w-5 sm:h-5 md:w-10 md:h-10" />
+      <div className="flex gap-8 lg:gap-10 md:gap-8 justify-center items-center mt-4 w-full">
+        <button className="text-red-500 hover:text-red-700 transition duration-300">
+          <FaHeart className="w-5 h-5 lg:w-8 lg:h-8" />
         </button>
-        <button className="text-white bg-blue-500 px-1 py-1 sm:px-3 sm:py-2 md:px-4 md:py-3 rounded-lg hover:bg-hover">
-          <span className="text-xs sm:text-sm md:text-base block md:hidden">
-            Buy
-          </span>
-          <span className="text-xs sm:text-sm md:text-lg hidden md:block">
-            Buy Now
-          </span>
+        <button className="text-white bg-blue-500 px-3 py-2 sm:px-4 sm:py-2 rounded-lg hover:bg-hover transition duration-300">
+          Buy Now
         </button>
-        <button className="text-slate-400 hover:text-white">
-          <FaShoppingCart className="w-4 h-4 sm:w-5 sm:h-5 md:w-10 md:h-10" />
+        <button className="text-slate-400 hover:text-white transition duration-300">
+          <FaShoppingCart className="w-5 h-5 lg:w-8 lg:h-8" />
         </button>
       </div>
     </div>
@@ -161,7 +156,7 @@ const Home2 = () => {
             ))}
           </Slider>
           <div className="flex justify-center w-full">
-            <button className="bg-blue-500 text-white px-3 py-2 sm:px-4 sm:py-2 rounded-lg hover:bg-hover w-44">
+            <button className="bg-blue-500 text-white px-3 py-2 sm:px-4 sm:py-2 rounded-lg hover:bg-hover w-44 transition duration-300">
               View All Products
             </button>
           </div>

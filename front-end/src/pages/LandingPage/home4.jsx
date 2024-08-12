@@ -78,20 +78,20 @@ const Home4 = () => {
                   <p className="text-md">{product.price}</p>
 
                   {/* Actions: Like, Cart, Buy Now */}
-                  <div className="flex gap-1 sm:gap-2 lg:gap-8 justify-center mt-2 sm:mt-4 w-full">
+                  <div className="flex gap-1 sm:gap-2 md:gap-8 lg:gap-8 justify-center mt-2 sm:mt-4 w-full">
                     <button className="text-red-500 hover:text-red-700">
-                      <FaHeart className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
+                      <FaHeart className="w-4 h-4 sm:w-5 sm:h-5 md:w-10 md:h-10" />
                     </button>
                     <button className="text-white bg-blue-500 px-1 py-1 sm:px-3 sm:py-2 md:px-4 md:py-3 rounded-lg hover:bg-hover">
                       <span className="text-xs sm:text-sm md:text-base block md:hidden">
                         Buy
                       </span>
-                      <span className="text-xs sm:text-sm md:text-base hidden md:block">
+                      <span className="text-xs sm:text-sm md:text-lg hidden md:block">
                         Buy Now
                       </span>
                     </button>
                     <button className="text-slate-400 hover:text-white">
-                      <FaShoppingCart className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
+                      <FaShoppingCart className="w-4 h-4 sm:w-5 sm:h-5 md:w-10 md:h-10" />
                     </button>
                   </div>
                 </div>

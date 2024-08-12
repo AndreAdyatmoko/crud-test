@@ -12,7 +12,7 @@ const Home5 = () => {
             className="w-full h-48 sm:h-64 lg:h-72 rounded-md object-cover"
           />
           <div className="absolute inset-0 flex flex-col items-start justify-center p-6">
-            <span className="text-red-600 text-2xl md:text-3xl lg:text-5xl font-bold font-freeman mb-8">
+            <span className="text-red-600 text-3xl md:text-4xl sm:text-2xl font-bold font-freeman mb-8">
               Enhance Your <br /> Vision Experience
             </span>
             <button className="bg-customBg3 text-white text-lg font-semibold py-2 px-6 rounded-md hover:bg-customBg2 transition duration-300 absolute bottom-4 left-1/2 transform -translate-x-1/2">

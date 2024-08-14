@@ -3,10 +3,18 @@ import { Link } from "react-router-dom";
 import { CgProfile, CgShoppingCart } from "react-icons/cg";
 import { HiMenu, HiX } from "react-icons/hi";
 import { AiOutlineHeart } from "react-icons/ai";
+import { showWarningToast } from "../../components/toastify/toast";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const handleActionClick = () => {
+    if (!isAuthenticated) {
+      showWarningToast("You must log in first!");
+    } else {
+      // Implement action here if the user is logged in
+    }
+  }
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -44,13 +52,15 @@ const Navbar = () => {
             to="/"
             className="text-2xl hover:bg-white hover:text-black p-2 rounded-full transition duration-300"
           >
-            <AiOutlineHeart />
+            <AiOutlineHeart 
+              onClick={handleActionClick}/>
           </Link>
           <Link
             to="/"
             className="text-2xl hover:bg-white hover:text-black p-2 rounded-full transition duration-300"
           >
-            <CgShoppingCart />
+            <CgShoppingCart
+              onClick={handleActionClick} />
           </Link>
           {isAuthenticated ? (
             <>

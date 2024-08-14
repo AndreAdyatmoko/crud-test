@@ -7,8 +7,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import { FaShoppingCart, FaHeart } from "react-icons/fa";
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { showWarningToast, showSuccessToast } from "../../components/toastify/toast";
 
 const products = [
   { imageUrl: Prod1, title: "Product 1", price: "$10.00" },
@@ -20,27 +19,11 @@ const products = [
 const CardProduct = ({ imageUrl, title, price, isLoggedIn }) => {
   const handleActionClick = () => {
     if (!isLoggedIn) {
-      toast.warning("You must log in first!", {
-        position: "top-center",
-        autoClose: 1000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "dark", 
-      });
+      showWarningToast("You must log in first!");
+     
     } else {
-      toast.success(`${title} added to cart!`, {
-        position: "top-center",
-        autoClose: 1000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light", 
-      });
+      showSuccessToast("Redirecting to purchase page...");
+     
       // Implementasikan logika tambahan di sini jika pengguna sudah login
     }
   };

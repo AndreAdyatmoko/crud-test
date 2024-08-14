@@ -1,6 +1,8 @@
-import React from "react";
-import Slider from "react-slick";
+import React, { useState, useEffect } from "react";
 import { IoIosArrowDroprightCircle } from "react-icons/io";
+import ScrollUpButton from "../../components/buttons/scrollUpButton";
+import Slider from "react-slick";
+import SliderSetting from "../../components/slider/sliderSetting";
 import Side from "../../assets/home/1.jpg";
 import Side2 from "../../assets/home/2.jpg";
 import Side3 from "../../assets/home/3.jpg";
@@ -20,6 +22,7 @@ import Home5 from "./home5";
 import Home6 from "./home6";
 import Home7 from "./home7";
 
+
 const brandLogos = [
   { src: Pagani, alt: "Pagani" },
   { src: Ferari, alt: "Ferrari" },
@@ -37,20 +40,30 @@ const sideLogos = [
 ];
 
 const Home = () => {
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 1000,
-    arrows: false,
-    pauseOnHover: true,
+  const [showScroll, setShowScroll] = useState(false);
+
+  const checkScrollTop = () => {
+    if (!showScroll && window.pageYOffset > 300) {
+      setShowScroll(true);
+    } else if (showScroll && window.pageYOffset <= 300) {
+      setShowScroll(false);
+    }
   };
 
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", checkScrollTop);
+    return () => {
+      window.removeEventListener("scroll", checkScrollTop);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [showScroll]);
+
   return (
-    <div className="bg-customBg2 text-gray-900 flex flex-col min-h-screen py-16">
+    <div className="bg-customBg2 text-gray-900 flex flex-col min-h-screen py-16 relative">
       <main className="flex-1 flex flex-col justify-center items-center p-4">
         <div className="w-full max-w-screen-lg flex flex-col md:flex-row gap-8">
           <div className="w-full md:w-1/2 text-3xl font-libre text-white">
@@ -94,7 +107,7 @@ const Home = () => {
           </div>
           <div className="w-full md:w-1/2 flex justify-center items-center">
             <div className="w-full border-none">
-              <Slider {...settings}>
+              <Slider {...SliderSetting}>
                 {sideLogos.map((art, index) => (
                   <div key={index} className="border-none outline-none">
                     <img
@@ -115,6 +128,7 @@ const Home = () => {
       <Home5 />
       <Home6 />
       <Home7 />
+      <ScrollUpButton showScroll={showScroll} scrollToTop={scrollToTop} />
     </div>
   );
 };

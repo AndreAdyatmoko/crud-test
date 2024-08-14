@@ -6,7 +6,7 @@ import Product4 from "../../assets/product/ex5.jpg";
 import Product5 from "../../assets/product/ex6.jpg";
 import Product6 from "../../assets/product/ex4.jpg";
 import { FaShoppingCart, FaHeart } from "react-icons/fa";
-import { toast } from "react-toastify";
+import { showWarningToast } from "../../components/toastify/toast";
 
 const Products = [
   { imageUrl: Product1, title: "Product 1", price: "$10.00" },
@@ -20,28 +20,10 @@ const Products = [
 const CardFlashSale = ({ imageUrl, title, price, isLoggedIn }) => {
   const handleActionClick = (action) => {
     if (!isLoggedIn) {
-      toast.warning("You must log in first!", {
-        position: "top-center",
-        autoClose: 1000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "dark",
-      });
+      showWarningToast("You must log in first!");
     } else {
       if (action === "buy") {
-        toast.success("Redirecting to purchase page...", {
-          position: "top-center",
-          autoClose: 1000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-        });
+        // Implement action here if the user is logged in
       }
     }
   };

@@ -1,34 +1,16 @@
 import React from "react";
 import Logo from "../../assets/baner/baner2.jpg";
-import { toast } from "react-toastify";
+import  {showWarningToast}  from "../../components/toastify/toast";
 
 const Home5 = () => {
   const isLoggedIn = false; // Ganti dengan kondisi login yang sebenarnya
 
   const handleBuyNowClick = () => {
     if (!isLoggedIn) {
-      toast.warning("You must log in first!", {
-        position: "top-center",
-        autoClose: 1000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "dark",
-      });
+      showWarningToast("You must log in first!");
     } else {
       // Implementasikan logika tambahan di sini jika pengguna sudah login
-      toast.success("Redirecting to purchase page...", {
-        position: "top-center",
-        autoClose: 1000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-      });
+  
     }
   };
 

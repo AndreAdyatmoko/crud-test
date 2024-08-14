@@ -2,8 +2,37 @@ import React from "react";
 import Logo from "../../assets/baner/baner1.jpg";
 import Logo2 from "../../assets/baner/baner3.jpg";
 import Logo3 from "../../assets/baner/baner5.jpg";
+import { toast } from "react-toastify";
 
 const Home7 = () => {
+  const isLoggedIn = false; // Ganti dengan kondisi login yang sebenarnya
+
+  const handleBuyNowClick = () => {
+    if (!isLoggedIn) {
+      toast.warning("You must log in first!", {
+        position: "top-center",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
+    } else {
+      toast.success("Redirecting to purchase page...", {
+        position: "top-center",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    }
+  };
+
   return (
     <div className="bg-customBg2 text-gray-900 p-4 sm:px-8 lg:px-28">
       <main className="flex-1 flex flex-col items-start px-4">
@@ -32,7 +61,10 @@ const Home7 = () => {
               <span className="text-red-600 text-2xl md:text-3xl lg:text-4xl font-bold font-freeman mb-8">
                 Enhance Your <br /> Vision Experience
               </span>
-              <button className="bg-customBg3 text-white text-lg font-semibold py-2 px-6 rounded-md hover:bg-customBg2 transition duration-300 absolute bottom-4 left-1/2 transform -translate-x-1/2">
+              <button
+                onClick={handleBuyNowClick}
+                className="bg-customBg3 text-white text-lg font-semibold py-2 px-6 rounded-md hover:bg-customBg2 transition duration-300 absolute bottom-4 left-1/2 transform -translate-x-1/2"
+              >
                 Buy Now
               </button>
             </div>

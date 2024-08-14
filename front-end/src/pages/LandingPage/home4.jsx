@@ -7,6 +7,8 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import { FaShoppingCart, FaHeart } from "react-icons/fa";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const products = [
   { imageUrl: Prod1, title: "Product 1", price: "$10.00" },
@@ -15,7 +17,66 @@ const products = [
   { imageUrl: Prod4, title: "Product 4", price: "$40.00" },
 ];
 
+const CardProduct = ({ imageUrl, title, price, isLoggedIn }) => {
+  const handleActionClick = () => {
+    if (!isLoggedIn) {
+      toast.warning("You must log in first!", {
+        position: "top-center",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark", 
+      });
+    } else {
+      toast.success(`${title} added to cart!`, {
+        position: "top-center",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light", 
+      });
+      // Implementasikan logika tambahan di sini jika pengguna sudah login
+    }
+  };
+
+  return (
+    <div className="bg-customBg p-4 rounded-md text-white relative">
+      <img
+        src={imageUrl}
+        alt={title}
+        className="w-full h-48 object-cover rounded-md mb-4"
+      />
+      <p className="text-lg font-semibold">{title}</p>
+      <p className="text-md">{price}</p>
+
+      {/* Actions: Like, Cart, Buy Now */}
+      <div className="flex gap-8 lg:gap-10 md:gap-8 justify-center items-center mt-4 w-full">
+        <button className="text-red-500 hover:text-red-700 transition duration-300"
+          onClick={handleActionClick}>
+          <FaHeart className="w-5 h-5 lg:w-8 lg:h-8" />
+        </button>
+        <button className="text-white bg-blue-500 px-3 py-2 sm:px-4 sm:py-2 rounded-lg hover:bg-hover transition duration-300"
+          onClick={handleActionClick}>
+          Buy Now
+        </button>
+        <button className="text-slate-400 hover:text-white transition duration-300"
+          onClick={handleActionClick}>
+          <FaShoppingCart className="w-5 h-5 lg:w-8 lg:h-8" />
+        </button>
+      </div>
+    </div>
+  );
+};
+
 const Home4 = () => {
+  const isLoggedIn = false; // Ganti dengan kondisi login yang sebenarnya
+
   const settings = {
     dots: true,
     infinite: true,
@@ -68,28 +129,12 @@ const Home4 = () => {
           <Slider {...settings}>
             {products.map((product, index) => (
               <div key={index} className="px-2">
-                <div className="bg-customBg p-4 rounded-md text-white relative">
-                  <img
-                    src={product.imageUrl}
-                    alt={product.title}
-                    className="w-full h-48 object-cover rounded-md mb-4"
-                  />
-                  <p className="text-lg font-semibold">{product.title}</p>
-                  <p className="text-md">{product.price}</p>
-
-                  {/* Actions: Like, Cart, Buy Now */}
-                  <div className="flex gap-8 lg:gap-10 md:gap-8 justify-center items-center mt-4 w-full">
-                    <button className="text-red-500 hover:text-red-700 transition duration-300">
-                      <FaHeart className="w-5 h-5 lg:w-8 lg:h-8" />
-                    </button>
-                    <button className="text-white bg-blue-500 px-3 py-2 sm:px-4 sm:py-2 rounded-lg hover:bg-hover transition duration-300">
-                      Buy Now
-                    </button>
-                    <button className="text-slate-400 hover:text-white transition duration-300">
-                      <FaShoppingCart className="w-5 h-5 lg:w-8 lg:h-8" />
-                    </button>
-                  </div>
-                </div>
+                <CardProduct
+                  imageUrl={product.imageUrl}
+                  title={product.title}
+                  price={product.price}
+                  isLoggedIn={isLoggedIn} // Meneruskan status login ke CardProduct
+                />
               </div>
             ))}
           </Slider>

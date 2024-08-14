@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { CgProfile } from "react-icons/cg";
+import { CgProfile, CgShoppingCart } from "react-icons/cg";
 import { HiMenu, HiX } from "react-icons/hi";
+import { AiOutlineHeart } from "react-icons/ai";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -14,6 +15,11 @@ const Navbar = () => {
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    setIsAuthenticated(false);
   };
 
   return (
@@ -33,26 +39,38 @@ const Navbar = () => {
             Contact Us
           </Link>
         </div>
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-2">
+          <Link
+            to="/"
+            className="text-2xl hover:bg-white hover:text-black p-2 rounded-full transition duration-300"
+          >
+            <AiOutlineHeart />
+          </Link>
+          <Link
+            to="/"
+            className="text-2xl hover:bg-white hover:text-black p-2 rounded-full transition duration-300"
+          >
+            <CgShoppingCart />
+          </Link>
           {isAuthenticated ? (
-            <button className="text-2xl hover:bg-white hover:text-black p-2 rounded-full transition duration-300">
-              <CgProfile />
-            </button>
-          ) : (
             <>
-              <Link
-                to="/get-in-touch"
+              <button className="text-2xl hover:bg-white hover:text-black p-2 rounded-full transition duration-300">
+                <CgProfile />
+              </button>
+              <button
+                onClick={handleLogout}
                 className="bg-white text-black font-libre px-2 py-1 rounded-full hover:font-extrabold focus:outline-none transition duration-300"
               >
-                Get in Touch
-              </Link>
-              <Link
-                to="/login"
-                className="bg-white text-black font-libre px-2 py-1 rounded-full hover:font-extrabold focus:outline-none transition duration-300"
-              >
-                Login
-              </Link>
+                Logout
+              </button>
             </>
+          ) : (
+            <Link
+              to="/login"
+              className="bg-white text-black font-libre px-2 py-1 rounded-full hover:font-extrabold focus:outline-none transition duration-300"
+            >
+              Login
+            </Link>
           )}
           <button onClick={toggleMenu} className="md:hidden text-2xl">
             {isOpen ? <HiX /> : <HiMenu />}

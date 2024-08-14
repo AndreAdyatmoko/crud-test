@@ -7,6 +7,8 @@ import Footer from './pages/footer/footer'
 import About from './pages/about/about'
 import Contact from './pages/contact/contact'
 import Home2 from './pages/LandingPage/home2'
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const App = () => {
   return (
@@ -20,6 +22,7 @@ const App = () => {
         <Route path='/contact' element={<Contact/>} />
       </Routes>
       <Footer />
+      <ToastContainer /> 
     </div>
   )
 }

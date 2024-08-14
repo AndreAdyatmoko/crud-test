@@ -10,6 +10,7 @@ import Product7 from "../../assets/product/7.jpg";
 import Product8 from "../../assets/product/8.jpg";
 import Product9 from "../../assets/product/9.jpg";
 import { FaShoppingCart, FaHeart } from "react-icons/fa";
+import { toast } from "react-toastify";
 
 const Products = [
   { imageUrl: Product1, title: "Product 1", price: "$10.00", discount: "10%" },
@@ -23,8 +24,24 @@ const Products = [
   { imageUrl: Product9, title: "Product 9", price: "$90.00", discount: "90%" },
 ];
 
-// Komponen CardFlashSale
-const CardFlashSale = ({ imageUrl, title, price, discount }) => {
+const CardFlashSale = ({ imageUrl, title, price, discount, isLoggedIn }) => {
+  const handleActionClick = () => {
+    if (!isLoggedIn) {
+      toast.warning("You must log in first!", {
+        position: "top-center",
+        autoClose: 1000, 
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark", 
+      });
+    } else {
+      // Implement action here if the user is logged in
+    }
+  };
+
   return (
     <div className="bg-customBg rounded-xl shadow-md p-4 flex flex-col items-center mx-2">
       <img
@@ -40,15 +57,23 @@ const CardFlashSale = ({ imageUrl, title, price, discount }) => {
       </p>
       <p className="text-sm text-red-500 mb-2">Discount: {discount}</p>
 
-      {/* Actions: Like, Cart, Buy Now */}
       <div className="flex gap-8 lg:gap-10 md:gap-8 justify-center items-center mt-4 w-full">
-        <button className="text-red-500 hover:text-red-700 transition duration-300">
+        <button
+          className="text-red-500 hover:text-red-700 transition duration-300"
+          onClick={handleActionClick}
+        >
           <FaHeart className="w-5 h-5 lg:w-8 lg:h-8" />
         </button>
-        <button className="text-white bg-blue-500 px-3 py-2 sm:px-4 sm:py-2 rounded-lg hover:bg-hover transition duration-300">
+        <button
+          className="text-white bg-blue-500 px-3 py-2 sm:px-4 sm:py-2 rounded-lg hover:bg-hover transition duration-300"
+          onClick={handleActionClick}
+        >
           Buy Now
         </button>
-        <button className="text-slate-400 hover:text-white transition duration-300">
+        <button
+          className="text-slate-400 hover:text-white transition duration-300"
+          onClick={handleActionClick}
+        >
           <FaShoppingCart className="w-5 h-5 lg:w-8 lg:h-8" />
         </button>
       </div>
@@ -56,8 +81,8 @@ const CardFlashSale = ({ imageUrl, title, price, discount }) => {
   );
 };
 
-// Komponen Home2
 const Home2 = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // Simulate user login status
   const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
 
   useEffect(() => {
@@ -65,11 +90,20 @@ const Home2 = () => {
       setTimeLeft(calculateTimeLeft());
     }, 1000);
 
+    // Simulate checking if user is logged in
+    const checkLoginStatus = () => {
+      // Simulate login check with localStorage or other method
+      const token = localStorage.getItem("token");
+      setIsLoggedIn(!!token);
+    };
+
+    checkLoginStatus();
+
     return () => clearInterval(timer);
   }, []);
 
   function calculateTimeLeft() {
-    const endTime = new Date("2024-09-10T00:00:00"); // Ganti dengan waktu akhir flash sale
+    const endTime = new Date("2024-09-10T00:00:00"); // Set your flash sale end time here
     const now = new Date();
     const difference = endTime - now;
 
@@ -152,6 +186,7 @@ const Home2 = () => {
                 title={item.title}
                 price={item.price}
                 discount={item.discount}
+                isLoggedIn={isLoggedIn}
               />
             ))}
           </Slider>

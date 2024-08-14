@@ -7,6 +7,7 @@ import Footer from './pages/footer/footer'
 import About from './pages/about/about'
 import Contact from './pages/contact/contact'
 import Home2 from './pages/LandingPage/home2'
+import Whistlist from './pages/wishlist/wishlist'
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -20,6 +21,7 @@ const App = () => {
         <Route path='/login' element={<LoginPage/>} />
         <Route path='/about' element={<About/>} />
         <Route path='/contact' element={<Contact/>} />
+        <Route path='/whistlist' element={<Whistlist/>} />
       </Routes>
       <Footer />
       <ToastContainer /> 

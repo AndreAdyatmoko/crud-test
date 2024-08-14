@@ -14,7 +14,7 @@ const Navbar = () => {
     } else {
       // Implement action here if the user is logged in
     }
-  }
+  };
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -40,27 +40,31 @@ const Navbar = () => {
           <Link to="/" className="hover:text-white transition duration-300">
             Home
           </Link>
-          <Link to="/about" className="hover:text-white transition duration-300">
+          <Link
+            to="/about"
+            className="hover:text-white transition duration-300"
+          >
             About
           </Link>
-          <Link to="/contact" className="hover:text-white transition duration-300">
+          <Link
+            to="/contact"
+            className="hover:text-white transition duration-300"
+          >
             Contact Us
           </Link>
         </div>
         <div className="flex items-center gap-2">
           <Link
-            to="/"
+            to="/whistlist"
             className="text-2xl hover:bg-white hover:text-black p-2 rounded-full transition duration-300"
           >
-            <AiOutlineHeart 
-              onClick={handleActionClick}/>
+            <AiOutlineHeart />
           </Link>
           <Link
             to="/"
             className="text-2xl hover:bg-white hover:text-black p-2 rounded-full transition duration-300"
           >
-            <CgShoppingCart
-              onClick={handleActionClick} />
+            <CgShoppingCart onClick={handleActionClick} />
           </Link>
           {isAuthenticated ? (
             <>
@@ -92,10 +96,16 @@ const Navbar = () => {
           <Link to="/home" className="hover:text-white transition duration-300">
             Home
           </Link>
-          <Link to="/about" className="hover:text-white transition duration-300">
+          <Link
+            to="/about"
+            className="hover:text-white transition duration-300"
+          >
             About
           </Link>
-          <Link to="/contact" className="hover:text-white transition duration-300">
+          <Link
+            to="/contact"
+            className="hover:text-white transition duration-300"
+          >
             Contact Us
           </Link>
         </div>

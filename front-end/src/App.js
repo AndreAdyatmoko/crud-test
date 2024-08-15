@@ -10,6 +10,7 @@ import Home2 from './pages/LandingPage/home2'
 import Whistlist from './pages/wishlist/wishlist'
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Cart from './pages/cart/cart'
 
 const App = () => {
   return (
@@ -22,6 +23,8 @@ const App = () => {
         <Route path='/about' element={<About/>} />
         <Route path='/contact' element={<Contact/>} />
         <Route path='/whistlist' element={<Whistlist/>} />
+        <Route path='/cart' element={<Cart/>}/>
+
       </Routes>
       <Footer />
       <ToastContainer /> 
